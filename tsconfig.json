@@ -10,7 +10,8 @@
     "typings/react.d.ts",
     "typings/react-dom.d.ts",
     "lib/app.tsx",
-    "lib/editor.tsx"
+    "lib/editor.tsx",
+    "lib/preview.tsx"
   ],
   "exclude": [
     "node_modules"

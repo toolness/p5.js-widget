@@ -2,6 +2,7 @@ import ReactDOM = require("react-dom");
 import React = require("react");
 
 import Editor from "./editor";
+import Preview from "./preview";
 
 let defaultSketchJS = require("raw!./default-sketch.js") as string;
 
@@ -44,6 +45,7 @@ class App extends React.Component<AppProps, AppState> {
         <p>Hello from react {this.state.counter}</p>
         <Editor initialContent={defaultSketchJS}
                 onChange={this.onChange} />
+        <Preview content={defaultSketchJS} />
       </div>
     );
   }
