@@ -1,7 +1,5 @@
-/// <reference path="../typings/react.d.ts"/>
 import React = require("react");
 
-/// <reference path="../typings/codemirror.d.ts"/>
 import CodeMirror = require("codemirror");
 
 import "codemirror/mode/javascript/javascript.js";

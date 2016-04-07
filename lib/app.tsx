@@ -1,7 +1,3 @@
-/// <reference path="../typings/react.d.ts"/>
-/// <reference path="../typings/react-dom.d.ts"/>
-/// <reference path="../typings/custom.d.ts"/>
-
 import ReactDOM = require("react-dom");
 import React = require("react");
 
