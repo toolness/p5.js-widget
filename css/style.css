@@ -9,6 +9,6 @@
 
 $borderColor : pink;
 
-#codemirror {
+.CodeMirror {
   border: 1px solid $borderColor;
 }

@@ -1,15 +1,13 @@
-/// <reference path="../typings/codemirror.d.ts"/>
 /// <reference path="../typings/react.d.ts"/>
 /// <reference path="../typings/react-dom.d.ts"/>
 /// <reference path="../typings/custom.d.ts"/>
 
 import ReactDOM = require("react-dom");
 import React = require("react");
-import CodeMirror = require("codemirror");
 
-import "codemirror/mode/javascript/javascript.js";
+import Editor from "./editor";
 
-let defaultSketchJS = require("raw!./default-sketch.js");
+let defaultSketchJS = require("raw!./default-sketch.js") as string;
 
 require("../css/style.css");
 
@@ -41,14 +39,13 @@ class App extends React.Component<AppProps, AppState> {
   }
 
   render() {
-    return <p>Hello from react {this.state.counter}</p>;
+    return (
+      <div>
+        <p>Hello from react {this.state.counter}</p>
+        <Editor initialContent={defaultSketchJS}/>
+      </div>
+    );
   }
 }
 
 ReactDOM.render(<App/>, document.getElementById('app'));
-
-var cm = CodeMirror(document.getElementById('codemirror'), {
-  value: defaultSketchJS,
-  lineNumbers: true,
-  mode: 'javascript'
-});
