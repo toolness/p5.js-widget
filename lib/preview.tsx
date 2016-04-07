@@ -1,7 +1,12 @@
 import React = require("react");
 
+interface ErrorReporter {
+  (message: string, line?: number): any
+}
+
 interface Props {
-  content: string
+  content: string,
+  onError: ErrorReporter
 }
 
 interface State {
@@ -10,7 +15,7 @@ interface State {
 
 interface PreviewFrameProxy extends Window {
   startSketch: (sketch: string, p5version: string,
-                errorCb: (message: string, line?: number) => any) => any
+                errorCb: ErrorReporter) => any
 }
 
 export default class Preview extends React.Component<Props, State> {
@@ -28,9 +33,7 @@ export default class Preview extends React.Component<Props, State> {
       // TODO: Do this in a way that doesn't mess things up if we
       // prematurely unmount.
       let frame = iframe.contentWindow as PreviewFrameProxy;
-      frame.startSketch(this.props.content, '0.4.2', (message, line) => {
-        console.log("ERROR", message, "at line", line);
-      });
+      frame.startSketch(this.props.content, '0.4.2', this.props.onError);
     });
     this.refs.container.appendChild(iframe);
     this._iframe = iframe;
