@@ -9,6 +9,11 @@
 
 $borderColor : pink;
 
+.error-message {
+  color: red;
+  font-family: monospace;
+}
+
 .CodeMirror {
   border: 1px solid $borderColor;
 }

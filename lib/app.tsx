@@ -8,11 +8,23 @@ let defaultSketchJS = require("raw!./default-sketch.js") as string;
 
 require("../css/style.css");
 
+interface ErrorMessage {
+  message: string,
+  line?: number
+}
+
 interface AppProps {
 }
 
 interface AppState {
+  lastError?: ErrorMessage
 }
+
+let ErrorMessage = (props: ErrorMessage) => (
+  <div className="error-message">
+    Line {props.line}: {props.message}
+  </div>
+);
 
 class App extends React.Component<AppProps, AppState> {
   constructor(props) {
@@ -31,7 +43,10 @@ class App extends React.Component<AppProps, AppState> {
   }
 
   onError = (message: string, line?: number) => {
-    console.log("ERROR", message, "at line", line);
+    this.setState({ lastError: {
+      message: message,
+      line: line
+    }});
   }
 
   render() {
@@ -40,6 +55,9 @@ class App extends React.Component<AppProps, AppState> {
         <Editor initialContent={defaultSketchJS}
                 onChange={this.onChange} />
         <Preview content={defaultSketchJS} onError={this.onError} />
+        {this.state.lastError
+          ? <ErrorMessage {...this.state.lastError} />
+          : null}
       </div>
     );
   }
