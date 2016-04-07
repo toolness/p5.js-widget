@@ -1,6 +1,6 @@
-/// <reference path="typings/codemirror.d.ts"/>
-/// <reference path="typings/react.d.ts"/>
-/// <reference path="typings/react-dom.d.ts"/>
+/// <reference path="../typings/codemirror.d.ts"/>
+/// <reference path="../typings/react.d.ts"/>
+/// <reference path="../typings/react-dom.d.ts"/>
 
 import ReactDOM = require("react-dom");
 import React = require("react");
