@@ -65,6 +65,10 @@ class App extends React.Component<AppProps, AppState> {
     });
   }
 
+  handleRevertClick = () => {
+    this.setState({ editorContent: this.props.initialContent });
+  }
+
   handlePlayClick = () => {
     this.setState((prevState, props) => ({
       isPlaying: true,
@@ -85,7 +89,10 @@ class App extends React.Component<AppProps, AppState> {
         {this.state.isPlaying
           ? (<button onClick={this.handleStopClick}>Stop</button>)
           : null }
-        <Editor initialContent={this.props.initialContent}
+        {this.state.editorContent !== this.props.initialContent
+          ? <button onClick={this.handleRevertClick}>Revert</button>
+          : null}
+        <Editor content={this.state.editorContent}
                 onChange={this.handleEditorChange} />
         {this.state.isPlaying
           ? (<div>

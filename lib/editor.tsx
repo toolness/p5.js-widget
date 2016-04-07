@@ -5,7 +5,7 @@ import CodeMirror = require("codemirror");
 import "codemirror/mode/javascript/javascript.js";
 
 interface Props {
-  initialContent: string
+  content?: string
   onChange?: (newValue: string) => any
 }
 
@@ -15,9 +15,16 @@ interface State {
 export default class Editor extends React.Component<Props, State> {
   _cm: CodeMirror.Editor
 
+  componentDidUpdate(prevProps: Props) {
+    if (this.props.content !== prevProps.content &&
+        this.props.content !== this._cm.getValue()) {
+      this._cm.setValue(this.props.content);
+    }
+  }
+
   componentDidMount() {
     this._cm = CodeMirror(this.refs.container, {
-      value: this.props.initialContent,
+      value: this.props.content,
       lineNumbers: true,
       mode: 'javascript'
     });
