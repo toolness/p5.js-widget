@@ -90,7 +90,7 @@ class App extends React.Component<AppProps, AppState> {
       <div>
         <button onClick={this.handlePlayClick}>Play</button>
         {this.state.isPlaying
-          ? (<button onClick={this.handleStopClick}>Stop</button>)
+          ? <button onClick={this.handleStopClick}>Stop</button>
           : null }
         {this.state.editorContent !== this.props.initialContent
           ? <button onClick={this.handleRevertClick}>Revert</button>
