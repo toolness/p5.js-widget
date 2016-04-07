@@ -49,5 +49,6 @@ ReactDOM.render(<App/>, document.getElementById('app'));
 
 var cm = CodeMirror(document.getElementById('codemirror'), {
   value: defaultSketchJS,
+  lineNumbers: true,
   mode: 'javascript'
 });

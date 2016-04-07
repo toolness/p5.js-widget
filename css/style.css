@@ -1,4 +1,11 @@
-@import '../node_modules/codemirror/lib/codemirror.css';
+/**
+ * Note that we'd like to use the following import to inline CodeMirror's
+ * CSS, but something weird happens with the line number styling and
+ * I have no idea why. So CodeMirror CSS needs to be included via a
+ * manual <link> tag in the HTML for now.
+ *
+ * @import '../node_modules/codemirror/lib/codemirror.css';
+ */
 
 $borderColor : pink;
 
