@@ -12,27 +12,18 @@ interface AppProps {
 }
 
 interface AppState {
-  counter: number
 }
 
 class App extends React.Component<AppProps, AppState> {
-  _interval: number
-
   constructor(props) {
     super(props);
-    this.state = { counter: 0 };
+    this.state = {};
   }
 
   componentDidMount() {
-    this._interval = setInterval(() => {
-      this.setState((prevState, prevProps) => {
-        return { counter: prevState.counter + 1 };
-      });
-    }, 1000);
   }
 
   componentWillUnmount() {
-    clearInterval(this._interval);
   }
 
   onChange = (newValue: string) => {
@@ -42,7 +33,6 @@ class App extends React.Component<AppProps, AppState> {
   render() {
     return (
       <div>
-        <p>Hello from react {this.state.counter}</p>
         <Editor initialContent={defaultSketchJS}
                 onChange={this.onChange} />
         <Preview content={defaultSketchJS} />
