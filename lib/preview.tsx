@@ -4,6 +4,8 @@ import esprima = require("esprima");
 import falafel from "./falafel";
 import LoopInserter from "./loop-inserter";
 
+const LOOP_CHECK_FUNC_NAME = '__loopCheck';
+
 interface ErrorReporter {
   (message: string, line?: number): any
 }
@@ -20,7 +22,7 @@ interface State {
 
 interface PreviewFrameProxy extends Window {
   startSketch: (sketch: string, p5version: string, maxRunTime: number,
-                errorCb: ErrorReporter) => any
+                loopCheckFuncName: string, errorCb: ErrorReporter) => any
 }
 
 export default class Preview extends React.Component<Props, State> {
@@ -31,7 +33,8 @@ export default class Preview extends React.Component<Props, State> {
 
     try {
       content = falafel(content, {}, LoopInserter(function(node) {
-        return "__loopCheck(" + JSON.stringify(node.range) + ");";
+        return LOOP_CHECK_FUNC_NAME + "(" +
+               JSON.stringify(node.range) + ");";
       })).toString();
     } catch (e) {
       // There's almost definitely a syntax error in the user's code;
@@ -50,7 +53,8 @@ export default class Preview extends React.Component<Props, State> {
       // TODO: Do this in a way that doesn't mess things up if we
       // prematurely unmount.
       let frame = iframe.contentWindow as PreviewFrameProxy;
-      frame.startSketch(content, '0.4.2', 1000, this.props.onError);
+      frame.startSketch(content, '0.4.2', 1000,
+                        LOOP_CHECK_FUNC_NAME, this.props.onError);
     });
     this.refs.container.appendChild(iframe);
     this._iframe = iframe;
