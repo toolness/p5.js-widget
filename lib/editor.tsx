@@ -8,6 +8,7 @@ import "codemirror/mode/javascript/javascript.js";
 
 interface Props {
   initialContent: string
+  onChange?: (newValue: string) => any
 }
 
 interface State {
@@ -21,6 +22,11 @@ export default class Editor extends React.Component<Props, State> {
       value: this.props.initialContent,
       lineNumbers: true,
       mode: 'javascript'
+    });
+    this._cm.on('change', () => {
+      if (this.props.onChange) {
+        this.props.onChange(this._cm.getValue());
+      }
     });
   }
 

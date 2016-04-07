@@ -38,11 +38,16 @@ class App extends React.Component<AppProps, AppState> {
     clearInterval(this._interval);
   }
 
+  onChange = (newValue: string) => {
+    console.log("CHANGE", this);
+  }
+
   render() {
     return (
       <div>
         <p>Hello from react {this.state.counter}</p>
-        <Editor initialContent={defaultSketchJS}/>
+        <Editor initialContent={defaultSketchJS}
+                onChange={this.onChange} />
       </div>
     );
   }
