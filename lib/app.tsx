@@ -30,7 +30,7 @@ class App extends React.Component<AppProps, AppState> {
     console.log("CHANGE", this);
   }
 
-  onError = (message: string, line?: number) {
+  onError = (message: string, line?: number) => {
     console.log("ERROR", message, "at line", line);
   }
 
