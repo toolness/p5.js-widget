@@ -6,6 +6,7 @@ interface ErrorReporter {
 
 interface Props {
   content: string,
+  timestamp: number,
   onError: ErrorReporter
 }
 
@@ -37,6 +38,12 @@ export default class Preview extends React.Component<Props, State> {
     });
     this.refs.container.appendChild(iframe);
     this._iframe = iframe;
+  }
+
+  componentDidUpdate(prevProps: Props, prevState: State) {
+    if (prevProps.timestamp !== this.props.timestamp) {
+      this.resetIframe();
+    }
   }
 
   componentDidMount() {
