@@ -19,7 +19,7 @@ interface State {
 }
 
 interface PreviewFrameProxy extends Window {
-  startSketch: (sketch: string, p5version: string,
+  startSketch: (sketch: string, p5version: string, maxRunTime: number,
                 errorCb: ErrorReporter) => any
 }
 
@@ -50,7 +50,7 @@ export default class Preview extends React.Component<Props, State> {
       // TODO: Do this in a way that doesn't mess things up if we
       // prematurely unmount.
       let frame = iframe.contentWindow as PreviewFrameProxy;
-      frame.startSketch(content, '0.4.2', this.props.onError);
+      frame.startSketch(content, '0.4.2', 1000, this.props.onError);
     });
     this.refs.container.appendChild(iframe);
     this._iframe = iframe;
