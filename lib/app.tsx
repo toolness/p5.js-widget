@@ -66,7 +66,10 @@ class App extends React.Component<AppProps, AppState> {
   }
 
   handleRevertClick = () => {
-    this.setState({ editorContent: this.props.initialContent });
+    this.setState({
+      isPlaying: false,
+      editorContent: this.props.initialContent
+    });
   }
 
   handlePlayClick = () => {
