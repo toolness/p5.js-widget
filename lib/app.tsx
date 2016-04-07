@@ -52,11 +52,11 @@ class App extends React.Component<AppProps, AppState> {
     }
   }
 
-  onChange = (newValue: string) => {
+  handleEditorChange = (newValue: string) => {
     this.setState({ editorContent: newValue });
   }
 
-  onError = (message: string, line?: number) => {
+  handlePreviewError = (message: string, line?: number) => {
     this.setState({
       lastError: {
         message: message,
@@ -86,12 +86,12 @@ class App extends React.Component<AppProps, AppState> {
           ? (<button onClick={this.handleStopClick}>Stop</button>)
           : null }
         <Editor initialContent={this.props.initialContent}
-                onChange={this.onChange} />
+                onChange={this.handleEditorChange} />
         {this.state.isPlaying
           ? (<div>
                <Preview content={this.state.previewContent}
                         timestamp={this.state.startPlayTimestamp}
-                        onError={this.onError} />
+                        onError={this.handlePreviewError} />
                {this.state.lastError
                 ? <ErrorMessage {...this.state.lastError} />
                 : null}
