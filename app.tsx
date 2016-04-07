@@ -6,6 +6,8 @@ import ReactDOM = require("react-dom");
 import React = require("react");
 import CodeMirror = require("codemirror");
 
+import "codemirror/mode/javascript/javascript.js";
+
 interface AppProps {
 }
 
@@ -41,5 +43,6 @@ class App extends React.Component<AppProps, AppState> {
 ReactDOM.render(<App/>, document.getElementById('app'));
 
 var cm = CodeMirror(document.getElementById('codemirror'), {
-  value: 'hello from codemirror'
+  value: 'function setup() {\n  print("hello from codemirror");\n}',
+  mode: 'javascript'
 });
