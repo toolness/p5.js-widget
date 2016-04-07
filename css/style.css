@@ -1,6 +1,6 @@
 @import '../node_modules/codemirror/lib/codemirror.css';
 
-$borderColor : rgba(0, 0, 0, 1);
+$borderColor : pink;
 
 #codemirror {
   border: 1px solid $borderColor;

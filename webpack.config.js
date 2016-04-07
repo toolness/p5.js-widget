@@ -13,9 +13,12 @@ module.exports = {
       // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
       { test: /\.tsx?$/, loader: 'ts-loader' },
       {
-        test: /\.scss$/,
-        loaders: ["style", "css?sourceMap", "sass?sourceMap"]
+        test: /\.css$/,
+        loaders: ["style", "css?sourceMap", "postcss?sourceMap"]
       }
     ]
+  },
+  postcss: function () {
+    return [require('autoprefixer'), require('precss')];
   }
 }
