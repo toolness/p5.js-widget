@@ -1,0 +1,7 @@
+@import '../node_modules/codemirror/lib/codemirror.css';
+
+$borderColor : rgba(0, 0, 0, 1);
+
+#codemirror {
+  border: 1px solid $borderColor;
+}

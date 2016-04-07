@@ -11,6 +11,8 @@ import "codemirror/mode/javascript/javascript.js";
 
 let defaultSketchJS = require("raw!./default-sketch.js");
 
+require("../sass/styles.scss");
+
 interface AppProps {
 }
 
