@@ -1,4 +1,8 @@
 import React = require("react");
+import esprima = require("esprima");
+
+import falafel from "./falafel";
+import LoopInserter from "./loop-inserter";
 
 interface ErrorReporter {
   (message: string, line?: number): any
@@ -23,6 +27,18 @@ export default class Preview extends React.Component<Props, State> {
   _iframe: HTMLIFrameElement
 
   resetIframe() {
+    let content = this.props.content;
+
+    try {
+      content = falafel(content, {}, LoopInserter(function(node) {
+        return "__loopCheck(" + JSON.stringify(node.range) + ");";
+      })).toString();
+    } catch (e) {
+      // There's almost definitely a syntax error in the user's code;
+      // just leave it unmangled and let the preview frame bubble up
+      // the error.
+    }
+
     if (this._iframe) {
       this._iframe.parentNode.removeChild(this._iframe);
       this._iframe = null;
@@ -34,7 +50,7 @@ export default class Preview extends React.Component<Props, State> {
       // TODO: Do this in a way that doesn't mess things up if we
       // prematurely unmount.
       let frame = iframe.contentWindow as PreviewFrameProxy;
-      frame.startSketch(this.props.content, '0.4.2', this.props.onError);
+      frame.startSketch(content, '0.4.2', this.props.onError);
     });
     this.refs.container.appendChild(iframe);
     this._iframe = iframe;
