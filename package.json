@@ -4,9 +4,10 @@
   "description": "Embeddable widget for p5.js sketches",
   "main": "bundle.js",
   "dependencies": {
+    "codemirror": "^5.13.4",
+    "raw-loader": "^0.5.1",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
-    "codemirror": "^5.13.4",
     "ts-loader": "^0.8.1",
     "typescript": "^1.8.9",
     "webpack": "^1.12.14",
