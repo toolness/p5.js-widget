@@ -9,6 +9,8 @@
     "typings/codemirror.d.ts",
     "typings/react.d.ts",
     "typings/react-dom.d.ts",
+    "typings/esprima/esprima.d.ts",
+    "lib/falafel.ts",
     "lib/app.tsx",
     "lib/editor.tsx",
     "lib/preview.tsx"
