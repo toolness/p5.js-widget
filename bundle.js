@@ -21186,8 +21186,15 @@
 	        var _this = this;
 	        _super.apply(this, arguments);
 	        this.resizeEditor = function () {
-	            var rect = _this.refs.container.getBoundingClientRect();
-	            _this._cm.setSize(null, rect.height);
+	            var wrapper = _this._cm.getWrapperElement();
+	            var oldDisplay = wrapper.style.display;
+	            // We need to get the size of our container when it's
+	            // "uncorrupted" by the height of our codemirror widget, so
+	            // temporarily hide the widget.
+	            wrapper.style.display = 'none';
+	            var rectHeight = _this.refs.container.getBoundingClientRect().height;
+	            wrapper.style.display = oldDisplay;
+	            _this._cm.setSize(null, rectHeight);
 	        };
 	    }
 	    Editor.prototype.componentDidUpdate = function (prevProps) {
