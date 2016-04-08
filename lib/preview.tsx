@@ -85,6 +85,6 @@ export default class Preview extends React.Component<Props, State> {
   }
 
   render() {
-    return <div ref="container"></div>;
+    return <div ref="container" className="preview-holder"></div>;
   }
 }

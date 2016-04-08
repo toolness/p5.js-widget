@@ -71,7 +71,19 @@ button:hover {
     flex: 1;
   }
 
-  .preview-holder iframe {
+  .preview-holder-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .preview-holder {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .preview-holder-wrapper iframe {
+    flex: 1;
     border: none;
   }
 }

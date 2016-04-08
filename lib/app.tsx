@@ -101,7 +101,7 @@ class App extends React.Component<AppProps, AppState> {
         <div className="panes">
           <Editor content={this.state.editorContent}
                   onChange={this.handleEditorChange} />
-          <div className="preview-holder">
+          <div className="preview-holder-wrapper">
           {this.state.isPlaying
             ? <Preview content={this.state.previewContent}
                        width={this.props.previewWidth}
