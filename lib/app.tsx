@@ -1,13 +1,7 @@
-import ReactDOM = require("react-dom");
 import React = require("react");
-import url = require("url");
 
 import Editor from "./editor";
 import Preview from "./preview";
-
-let defaultSketchJS = require("raw!./default-sketch.js") as string;
-
-require("../css/style.css");
 
 interface ErrorMessage {
   message: string,
@@ -39,7 +33,7 @@ let ErrorMessage = (props: ErrorMessage) => (
   </div>
 );
 
-class App extends React.Component<AppProps, AppState> {
+export default class App extends React.Component<AppProps, AppState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -128,18 +122,3 @@ class App extends React.Component<AppProps, AppState> {
     );
   }
 }
-
-function start() {
-  let qs = url.parse(window.location.search, true).query;
-  let autoplay = (qs['autoplay'] === 'on');
-  let initialContent = qs['sketch'] || defaultSketchJS;
-
-  ReactDOM.render(
-    <App initialContent={initialContent.trim()}
-         previewWidth={150}
-         autoplay={autoplay} />,
-    document.getElementById('app-holder')
-  );
-}
-
-start();

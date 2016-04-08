@@ -11,6 +11,7 @@
     "typings/react-dom.d.ts",
     "typings/esprima/esprima.d.ts",
     "lib/falafel.ts",
+    "lib/main.tsx",
     "lib/app.tsx",
     "lib/editor.tsx",
     "lib/preview.tsx"
