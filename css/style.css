@@ -30,6 +30,10 @@ button {
   cursor: pointer;
 }
 
+button:hover {
+  background: lightgray;
+}
+
 .app {
   display: flex;
   flex-direction: column;
