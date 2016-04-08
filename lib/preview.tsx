@@ -11,6 +11,7 @@ interface ErrorReporter {
 }
 
 interface Props {
+  width: number,
   content: string,
   timestamp: number,
   onError: ErrorReporter
@@ -52,6 +53,7 @@ export default class Preview extends React.Component<Props, State> {
     let iframe = document.createElement('iframe');
 
     iframe.setAttribute('src', 'preview-frame.html');
+    iframe.setAttribute('width', this.props.width.toString());
     iframe.addEventListener('load', () => {
       // TODO: Do this in a way that doesn't mess things up if we
       // prematurely unmount.

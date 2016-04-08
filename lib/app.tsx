@@ -15,6 +15,7 @@ interface ErrorMessage {
 
 interface AppProps {
   initialContent: string,
+  previewWidth: number,
   autoplay?: boolean
 }
 
@@ -103,6 +104,7 @@ class App extends React.Component<AppProps, AppState> {
           <div className="preview-holder">
           {this.state.isPlaying
             ? <Preview content={this.state.previewContent}
+                       width={this.props.previewWidth}
                        timestamp={this.state.startPlayTimestamp}
                        onError={this.handlePreviewError} />
             : null}
@@ -119,6 +121,8 @@ class App extends React.Component<AppProps, AppState> {
 }
 
 ReactDOM.render(
-  <App initialContent={defaultSketchJS} autoplay={true} />,
+  <App initialContent={defaultSketchJS}
+       previewWidth={150}
+       autoplay={true} />,
   document.getElementById('app-holder')
 );
