@@ -84,6 +84,7 @@ button:hover {
     flex: 1;
     display: flex;
     flex-direction: column;
+    border-right: 4px solid $veryLightGray;
   }
 
   .preview-holder-wrapper iframe {
