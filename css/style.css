@@ -7,12 +7,26 @@
  * @import '../node_modules/codemirror/lib/codemirror.css';
  */
 
+$veryLightGray: #f0f0f0;
+
+html,
+body,
+#app-holder,
+.app {
+  height: 100%;
+}
+
 body {
   margin: 0;
 }
 
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
 .status-bar {
-  background: #f0f0f0;
+  background: $veryLightGray;
   min-height: 1em;
   font-family: monospace;
   padding: 8px;
@@ -31,13 +45,25 @@ body {
 }
 
 .panes {
+  flex: 1;
   display: flex;
+  border-top: 4px solid $veryLightGray;
 
   .editor-holder {
+    border-right: 4px solid $veryLightGray;
     flex: 1;
   }
 
   .preview-holder iframe {
     border: none;
   }
+}
+
+.CodeMirror {
+
+}
+
+.CodeMirror-gutters {
+  border-right: none;
+  background: $veryLightGray;
 }

@@ -87,7 +87,7 @@ class App extends React.Component<AppProps, AppState> {
 
   render() {
     return (
-      <div>
+      <div className="app">
         <div className="toolbar">
           <button onClick={this.handlePlayClick}>Play</button>
           {this.state.isPlaying
@@ -120,5 +120,5 @@ class App extends React.Component<AppProps, AppState> {
 
 ReactDOM.render(
   <App initialContent={defaultSketchJS} autoplay={true} />,
-  document.getElementById('app')
+  document.getElementById('app-holder')
 );
