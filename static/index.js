@@ -1,6 +1,12 @@
 $(function() {
   var FORCE_HTTPS = true;
   var widgetURL = p5Widget.url;
+  var simplifyHtml = function(html) {
+    // This will convert e.g. data-autoplay="", which is how browsers
+    // will always serialize the HTML, to just data-autoplay, which
+    // reads better.
+    return html.replace(/=""/g, '');
+  };
 
   if (FORCE_HTTPS) {
     widgetURL = widgetURL.replace('http:', 'https:');
@@ -16,7 +22,7 @@ $(function() {
 
     $(this).clone().appendTo(div);
 
-    code.text(div.html());
+    code.text(simplifyHtml(div.html()));
 
     $(this).before(code);
 
