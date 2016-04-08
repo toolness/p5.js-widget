@@ -11,6 +11,7 @@ const RESIZE_INTERVAL_MS = 100;
 
 interface Props {
   content?: string
+  errorLine?: number
   onChange?: (newValue: string) => any
 }
 
@@ -20,11 +21,26 @@ interface State {
 export default class Editor extends React.Component<Props, State> {
   _cm: CodeMirror.Editor
   _resizeInterval: number
+  _errorLineHandle: any
 
   componentDidUpdate(prevProps: Props) {
     if (this.props.content !== prevProps.content &&
         this.props.content !== this._cm.getValue()) {
       this._cm.setValue(this.props.content);
+    }
+    if (this.props.errorLine !== prevProps.errorLine) {
+      if (this._errorLineHandle) {
+        this._cm.removeLineClass(this._errorLineHandle, 'background',
+                                 'error-line');
+        this._errorLineHandle = null;
+      }
+      if (this.props.errorLine) {
+        this._errorLineHandle = this._cm.addLineClass(
+          this.props.errorLine - 1,
+          'background',
+          'error-line'
+        );
+      }
     }
   }
 

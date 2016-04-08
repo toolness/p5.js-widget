@@ -96,3 +96,7 @@ button:hover {
   border-right: none;
   background: $veryLightGray;
 }
+
+.error-line {
+  background: pink;
+}

@@ -87,6 +87,13 @@ class App extends React.Component<AppProps, AppState> {
   }
 
   render() {
+    let errorLine = null;
+
+    if (this.state.lastError &&
+        this.state.editorContent === this.state.previewContent) {
+      errorLine = this.state.lastError.line;
+    }
+
     return (
       <div className="app">
         <div className="toolbar">
@@ -100,6 +107,7 @@ class App extends React.Component<AppProps, AppState> {
         </div>
         <div className="panes">
           <Editor content={this.state.editorContent}
+                  errorLine={errorLine}
                   onChange={this.handleEditorChange} />
           <div className="preview-holder-wrapper">
           {this.state.isPlaying
