@@ -8,6 +8,8 @@
  */
 
 $veryLightGray: #f0f0f0;
+$codeFont: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro",
+           monospace;
 
 html,
 body,
@@ -42,7 +44,7 @@ button:hover {
 .status-bar {
   background: $veryLightGray;
   min-height: 1em;
-  font-family: monospace;
+  font-family: $codeFont;
   padding: 8px;
 }
 
@@ -71,6 +73,10 @@ button:hover {
   .preview-holder iframe {
     border: none;
   }
+}
+
+.CodeMirror {
+  font-family: $codeFont;
 }
 
 .CodeMirror-gutters {
