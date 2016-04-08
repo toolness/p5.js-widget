@@ -48,6 +48,6 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   render() {
-    return <div ref="container"></div>;
+    return <div ref="container" className="editor-holder"></div>;
   }
 }

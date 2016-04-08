@@ -7,13 +7,37 @@
  * @import '../node_modules/codemirror/lib/codemirror.css';
  */
 
-$borderColor : pink;
+body {
+  margin: 0;
+}
+
+.status-bar {
+  background: #f0f0f0;
+  min-height: 1em;
+  font-family: monospace;
+  padding: 8px;
+}
 
 .error-message {
   color: red;
-  font-family: monospace;
 }
 
-.CodeMirror {
-  border: 1px solid $borderColor;
+.toolbar {
+  display: flex;
+
+  button {
+    margin: 4px;
+  }
+}
+
+.panes {
+  display: flex;
+
+  .editor-holder {
+    flex: 1;
+  }
+
+  .preview-holder iframe {
+    border: none;
+  }
 }

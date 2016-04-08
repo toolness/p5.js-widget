@@ -88,25 +88,31 @@ class App extends React.Component<AppProps, AppState> {
   render() {
     return (
       <div>
-        <button onClick={this.handlePlayClick}>Play</button>
-        {this.state.isPlaying
-          ? <button onClick={this.handleStopClick}>Stop</button>
-          : null }
-        {this.state.editorContent !== this.props.initialContent
-          ? <button onClick={this.handleRevertClick}>Revert</button>
-          : null}
-        <Editor content={this.state.editorContent}
-                onChange={this.handleEditorChange} />
-        {this.state.isPlaying
-          ? (<div>
-               <Preview content={this.state.previewContent}
-                        timestamp={this.state.startPlayTimestamp}
-                        onError={this.handlePreviewError} />
-               {this.state.lastError
-                ? <ErrorMessage {...this.state.lastError} />
-                : null}
-             </div>)
-          : null}
+        <div className="toolbar">
+          <button onClick={this.handlePlayClick}>Play</button>
+          {this.state.isPlaying
+            ? <button onClick={this.handleStopClick}>Stop</button>
+            : null }
+          {this.state.editorContent !== this.props.initialContent
+            ? <button onClick={this.handleRevertClick}>Revert</button>
+            : null}
+        </div>
+        <div className="panes">
+          <Editor content={this.state.editorContent}
+                  onChange={this.handleEditorChange} />
+          <div className="preview-holder">
+          {this.state.isPlaying
+            ? <Preview content={this.state.previewContent}
+                       timestamp={this.state.startPlayTimestamp}
+                       onError={this.handlePreviewError} />
+            : null}
+          </div>
+        </div>
+        <div className="status-bar">
+          {this.state.lastError
+           ? <ErrorMessage {...this.state.lastError} />
+           : null}
+        </div>
       </div>
     );
   }
