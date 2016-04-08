@@ -23,6 +23,7 @@ body {
 }
 
 button {
+  font-size: 18px;
   font-family: Karla;
   font-weight: bold;
   color: black;
