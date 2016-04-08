@@ -82,6 +82,34 @@ function setup() {
 }
 </script>
 
+<h2>Resizing</h2>
+
+<p>
+  The height of the widget (and consequently the sketch preview pane too)
+  defaults to <span id="default-height"></span>px and can be changed
+  via the <code>data-height</code> attribute like so:
+</p>
+
+<script type="text/p5" data-height="100"></script>
+
+<p>
+  The width of the widget is always set to the full width of its
+  container element.
+</p>
+
+<p>
+  The width of the sketch preview pane can be set via the
+  <code>data-preview-width</code> attribute like so:
+</p>
+
+<script type="text/p5" data-autoplay data-preview-width="400">
+function setup() {
+  createCanvas(300, 100);
+  background(255, 0, 200);
+  noLoop();
+}
+</script>
+
 <script src="static/vendor/jquery.js"></script>
 <script src="p5-widget.js" data-manual></script>
 <script src="static/vendor/prism.js" data-manual></script>
