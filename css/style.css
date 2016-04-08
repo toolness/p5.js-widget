@@ -69,6 +69,10 @@ button:hover {
   .editor-holder {
     border-right: 4px solid $veryLightGray;
     flex: 1;
+
+    /* We need this for horizontal scrolling to work properly.
+     * Very weird. */
+    overflow-x: hidden;
   }
 
   .preview-holder-wrapper {
@@ -90,6 +94,10 @@ button:hover {
 
 .CodeMirror {
   font-family: $codeFont;
+
+  /* If we don't add this, the final characters on some lines aren't
+   * visible if the editor has a horizontal scrollbar. Weird. */
+  padding-right: 1em;
 }
 
 .CodeMirror-gutters {
