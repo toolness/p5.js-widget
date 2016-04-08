@@ -20,6 +20,16 @@ body {
   margin: 0;
 }
 
+button {
+  font-family: Karla;
+  font-weight: bold;
+  color: black;
+  background: $veryLightGray;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+
 .app {
   display: flex;
   flex-direction: column;
