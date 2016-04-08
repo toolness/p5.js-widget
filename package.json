@@ -23,6 +23,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "bundle": "webpack",
     "start": "webpack-dev-server"
   },
   "author": "Atul Varma <varmaa@gmail.com>",
