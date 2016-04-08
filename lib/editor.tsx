@@ -67,8 +67,19 @@ export default class Editor extends React.Component<Props, State> {
   }
 
   resizeEditor = () => {
-    let rect = this.refs.container.getBoundingClientRect();
-    this._cm.setSize(null, rect.height);
+    let wrapper = this._cm.getWrapperElement();
+    let oldDisplay = wrapper.style.display;
+
+    // We need to get the size of our container when it's
+    // "uncorrupted" by the height of our codemirror widget, so
+    // temporarily hide the widget.
+    wrapper.style.display = 'none';
+
+    let rectHeight = this.refs.container.getBoundingClientRect().height;
+
+    wrapper.style.display = oldDisplay;
+
+    this._cm.setSize(null, rectHeight);
   }
 
   // http://stackoverflow.com/a/33826399/2422398
