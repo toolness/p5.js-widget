@@ -20,6 +20,9 @@ interface State {
 
 }
 
+// Eventualy we might want the preview frame to exist on a separate
+// origin for security, which means that we'd have to use postMessage()
+// to communicate with it. Thus this interface needs to be asynchronous.
 interface PreviewFrameProxy extends Window {
   startSketch: (sketch: string, p5version: string, maxRunTime: number,
                 loopCheckFuncName: string, errorCb: ErrorReporter) => any
