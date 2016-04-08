@@ -1,4 +1,4 @@
-var p5jsWidget = (function() {
+var p5Widget = (function() {
   var MY_FILENAME = 'p5-widget.js';
   var IFRAME_FILENAME = 'p5-widget.html';
   var IFRAME_STYLE = 'width: 100%; border: 1px solid black';
@@ -6,6 +6,7 @@ var p5jsWidget = (function() {
 
   var myScriptEl = getMyScriptEl();
   var myBaseURL = getMyBaseURL(myScriptEl.src);
+  var autoload = !myScriptEl.hasAttribute('data-manual');
   var self = {};
 
   function getMyBaseURL(url) {
@@ -22,12 +23,20 @@ var p5jsWidget = (function() {
   function replaceScriptWithWidget(el) {
     var iframe = document.createElement('iframe');
     var height = parseInt(el.getAttribute('data-height'));
+    var autoplay = el.hasAttribute('data-autoplay');
+    var url;
+    var qsArgs = ['sketch=' + encodeURIComponent(el.textContent)];
     var style = IFRAME_STYLE;
 
     if (isNaN(height)) height = DEFAULT_HEIGHT;
 
+    if (autoplay) {
+      qsArgs.push('autoplay=on');
+    }
+
     style += '; min-height: ' + height + 'px';
-    iframe.setAttribute('src', myBaseURL + IFRAME_FILENAME);
+    url = myBaseURL + IFRAME_FILENAME + '?' + qsArgs.join('&');
+    iframe.setAttribute('src', url);
     iframe.setAttribute('style', style);
 
     el.parentNode.replaceChild(iframe, el);
@@ -39,11 +48,22 @@ var p5jsWidget = (function() {
     [].slice.call(scripts).forEach(replaceScriptWithWidget);
   }
 
-  if (document.readyState === 'complete') {
-    replaceAllScriptsWithWidget();
-  } else {
-    window.addEventListener('load', replaceAllScriptsWithWidget, false);
+  self.baseURL = myBaseURL;
+  self.url = myBaseURL + MY_FILENAME;
+
+  if (autoload) {
+    if (document.readyState === 'complete') {
+      replaceAllScriptsWithWidget();
+    } else {
+      window.addEventListener('load', replaceAllScriptsWithWidget, false);
+    }
   }
+
+  self.replaceScript = replaceScriptWithWidget;
+  self.replaceAll = replaceAllScriptsWithWidget;
+  self.defaults = {
+    height: DEFAULT_HEIGHT
+  };
 
   return self;
 })();

@@ -131,10 +131,11 @@ class App extends React.Component<AppProps, AppState> {
 
 function start() {
   let qs = url.parse(window.location.search, true).query;
-  let autoplay = ('autoplay' in qs);
+  let autoplay = (qs['autoplay'] === 'on');
+  let initialContent = qs['sketch'] || defaultSketchJS;
 
   ReactDOM.render(
-    <App initialContent={defaultSketchJS}
+    <App initialContent={initialContent.trim()}
          previewWidth={150}
          autoplay={autoplay} />,
     document.getElementById('app-holder')
