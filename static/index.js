@@ -14,6 +14,8 @@ $(function() {
 
   $("#script-tag-example").text('<script src="' + widgetURL + '"></script>');
 
+  $("#default-height").text(p5Widget.defaults.height);
+
   $('script[type="text/p5"]').each(function() {
     if (this.hasAttribute('data-hide-sourcecode')) return;
 

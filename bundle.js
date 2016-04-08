@@ -50,12 +50,17 @@
 	var url = __webpack_require__(159);
 	var app_1 = __webpack_require__(165);
 	var defaultSketchJS = __webpack_require__(173);
+	var DEFAULT_PREVIEW_WIDTH = 150;
 	__webpack_require__(174);
 	function start() {
 	    var qs = url.parse(window.location.search, true).query;
 	    var autoplay = (qs['autoplay'] === 'on');
 	    var initialContent = qs['sketch'] || defaultSketchJS;
-	    ReactDOM.render(React.createElement(app_1.default, {initialContent: initialContent.trim(), previewWidth: 150, autoplay: autoplay}), document.getElementById('app-holder'));
+	    var previewWidth = parseInt(qs['previewWidth']);
+	    if (isNaN(previewWidth)) {
+	        previewWidth = DEFAULT_PREVIEW_WIDTH;
+	    }
+	    ReactDOM.render(React.createElement(app_1.default, {initialContent: initialContent.trim(), previewWidth: previewWidth, autoplay: autoplay}), document.getElementById('app-holder'));
 	}
 	window.addEventListener('load', start);
 

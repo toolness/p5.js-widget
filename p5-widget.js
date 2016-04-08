@@ -27,12 +27,17 @@ var p5Widget = (function() {
   function replaceScriptWithWidget(el) {
     var iframe = document.createElement('iframe');
     var height = parseInt(el.getAttribute('data-height'));
+    var previewWidth = parseInt(el.getAttribute('data-preview-width'));
     var autoplay = el.hasAttribute('data-autoplay');
     var url;
     var qsArgs = ['sketch=' + encodeURIComponent(el.textContent)];
     var style = IFRAME_STYLE.slice();
 
     if (isNaN(height)) height = DEFAULT_HEIGHT;
+
+    if (!isNaN(previewWidth) && previewWidth >= 0) {
+      qsArgs.push('previewWidth=' + previewWidth);
+    }
 
     if (autoplay) {
       qsArgs.push('autoplay=on');
