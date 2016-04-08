@@ -22,4 +22,4 @@ function start() {
   );
 }
 
-start();
+window.addEventListener('load', start);
