@@ -1,5 +1,6 @@
 import ReactDOM = require("react-dom");
 import React = require("react");
+import url = require("url");
 
 import Editor from "./editor";
 import Preview from "./preview";
@@ -128,9 +129,16 @@ class App extends React.Component<AppProps, AppState> {
   }
 }
 
-ReactDOM.render(
-  <App initialContent={defaultSketchJS}
-       previewWidth={150}
-       autoplay={true} />,
-  document.getElementById('app-holder')
-);
+function start() {
+  let qs = url.parse(window.location.search, true).query;
+  let autoplay = ('autoplay' in qs);
+
+  ReactDOM.render(
+    <App initialContent={defaultSketchJS}
+         previewWidth={150}
+         autoplay={autoplay} />,
+    document.getElementById('app-holder')
+  );
+}
+
+start();
