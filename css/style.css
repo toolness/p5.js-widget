@@ -28,9 +28,9 @@ body {
 }
 
 button {
-  font-size: 18px;
-  font-family: Karla;
-  font-weight: bold;
+  font-size: 14px;
+  font-family: Montserrat;
+  font-weight: normal;
   color: black;
   border: 1px solid $darkPink;
   background: inherit;
@@ -83,8 +83,8 @@ a.p5-logo img {
 
 .error-message {
   .error-message-line {
-    font-family: Karla;
-    font-weight: bold;
+    font-family: Montserrat;
+    font-weight: normal;
     color: red;
   }
 }
