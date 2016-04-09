@@ -52,6 +52,13 @@ a.p5-logo img {
   height: 25px;
 }
 
+.media-play, .media-stop {
+  height: 16px;
+  width: 16px;
+  vertical-align: -10%;
+  margin-right: 5px;
+}
+
 .app {
   display: flex;
   flex-direction: column;
