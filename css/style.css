@@ -10,6 +10,7 @@
 @import './p5-widget-codemirror-theme.css';
 
 $veryLightGray: #f0f0f0;
+$lightPink: #ffe5ea;
 $codeFont: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro",
            monospace;
 
@@ -113,5 +114,5 @@ button:hover {
 }
 
 .error-line {
-  background: pink;
+  background: $lightPink;
 }
