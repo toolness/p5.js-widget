@@ -7,12 +7,16 @@ html, body {
 
 body {
   margin: 0;
+  display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
   display: flex;
 
   /* This centers our sketch horizontally. */
+  -webkit-justify-content: center;
   justify-content: center;
 
   /* This centers our sketch vertically. */
+  -webkit-align-items: center;
   align-items: center;
 }
 </style>
