@@ -39,5 +39,14 @@ echo "Staging new/changed files."
 git add bundle.js bundle.js.map static/ p5-widget.html p5-widget.js \
   preview-frame.html index.html
 
-echo "Done. Run 'git diff --staged' to review changes."
-echo "If satisfied, run 'git commit' to commit changes."
+#echo "Done. Run 'git diff --staged' to review changes."
+#echo "If satisfied, run 'git commit' to commit changes."
+echo "Committing changes."
+
+git commit -m "Rebuild site."
+
+echo "Pushing changes."
+
+git push
+
+git checkout master
