@@ -3,7 +3,7 @@ var p5Widget = (function() {
   var IFRAME_FILENAME = 'p5-widget.html';
   var IFRAME_STYLE = [
     'width: 100%',
-    'border: 1px solid darkgray',
+    'border: 1px solid #ec245e',
     'box-sizing: border-box'
   ];
   var DEFAULT_HEIGHT = 300;
