@@ -29,7 +29,8 @@ interface AppState {
 
 let ErrorMessage = (props: ErrorMessage) => (
   <div className="error-message">
-    Line {props.line}: {props.message}
+    <span className="error-message-line">Line {props.line}:</span>
+    {" " + props.message}
   </div>
 );
 

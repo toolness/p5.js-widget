@@ -52,7 +52,9 @@ button:hover {
 }
 
 .error-message {
-  color: red;
+  .error-message-line {
+    color: red;
+  }
 }
 
 .toolbar {
