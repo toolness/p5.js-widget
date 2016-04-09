@@ -1,0 +1,37 @@
+$lightGray: #A0A0A0;
+$darkGray: #666;
+$almostBlack: #222;
+$darkBrown: #704F21;
+$lightBrown: #a67f59;
+$pinkish: #DC3787; /* not p5 pink, but related */
+$blueish: #00A1D3;
+
+.cm-s-p5-widget span { color: $darkGray; }
+
+.cm-s-p5-widget span.cm-meta { color: $darkGray; }
+.cm-s-p5-widget span.cm-keyword { line-height: 1em; color: $darkBrown; }
+.cm-s-p5-widget span.cm-atom { color: $pinkish; }
+.cm-s-p5-widget span.cm-number { color: $pinkish; }
+.cm-s-p5-widget span.cm-def { color: $blueish; }
+.cm-s-p5-widget span.cm-variable { color: $blueish; }
+.cm-s-p5-widget span.cm-variable-2 { color: $almostBlack; }
+.cm-s-p5-widget span.cm-variable-3 { color: $almostBlack; }
+.cm-s-p5-widget span.cm-property { color: $almostBlack; }
+.cm-s-p5-widget span.cm-operator { color: $lightBrown; }
+.cm-s-p5-widget span.cm-comment { color: $lightGray; }
+.cm-s-p5-widget span.cm-string { color: $blueish; }
+.cm-s-p5-widget span.cm-string-2 { color: $blueish; }
+
+.cm-s-p5-widget span.cm-error { color: #f00; }
+
+.cm-s-p5-widget .CodeMirror-activeline-background { background: #e8f2ff; }
+.cm-s-p5-widget .CodeMirror-matchingbracket { outline:1px solid grey; color:black !important; }
+
+/* These styles don't seem to be set by CodeMirror's javascript mode. */
+
+.cm-s-p5-widget span.cm-qualifier { color: #555; }
+.cm-s-p5-widget span.cm-builtin { color: #30a; }
+.cm-s-p5-widget span.cm-bracket { color: #cc7; }
+.cm-s-p5-widget span.cm-tag { color: #170; }
+.cm-s-p5-widget span.cm-attribute { color: #00c; }
+.cm-s-p5-widget span.cm-link { color: #219; }

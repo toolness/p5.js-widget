@@ -47,6 +47,7 @@ export default class Editor extends React.Component<Props, State> {
 
   componentDidMount() {
     this._cm = CodeMirror(this.refs.container, {
+      theme: 'p5-widget',
       value: this.props.content,
       lineNumbers: true,
       mode: 'javascript'

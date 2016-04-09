@@ -7,6 +7,8 @@
  * @import '../node_modules/codemirror/lib/codemirror.css';
  */
 
+@import './p5-widget-codemirror-theme.css';
+
 $veryLightGray: #f0f0f0;
 $codeFont: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro",
            monospace;
