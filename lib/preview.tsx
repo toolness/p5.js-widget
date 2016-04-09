@@ -58,7 +58,7 @@ export default class Preview extends React.Component<Props, State> {
       // TODO: Do this in a way that doesn't mess things up if we
       // prematurely unmount.
       let frame = iframe.contentWindow as PreviewFrameProxy;
-      frame.startSketch(content, '0.4.2', 1000,
+      frame.startSketch(content, '0.4.23', 1000,
                         LOOP_CHECK_FUNC_NAME, this.props.onError);
     });
     this.refs.container.appendChild(iframe);
