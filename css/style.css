@@ -11,6 +11,8 @@
 
 $veryLightGray: #f0f0f0;
 $lightPink: #ffe5ea;
+$darkPink: #ec245e;
+$blueish: #30b8e6;
 $codeFont: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro",
            monospace;
 
@@ -30,14 +32,20 @@ button {
   font-family: Karla;
   font-weight: bold;
   color: black;
-  background: $veryLightGray;
-  border: none;
+  border: 1px solid $darkPink;
+  background: inherit;
+  color: $darkPink;
+  border-radius: 2px;
   padding: 8px;
   cursor: pointer;
 }
 
-button:hover {
-  background: lightgray;
+button:hover,
+button:hover .media-play,
+button:hover .media-stop {
+  fill: $blueish;
+  color: $blueish;
+  border-color: $blueish;
 }
 
 a.p5-logo {
@@ -53,6 +61,7 @@ a.p5-logo img {
 }
 
 .media-play, .media-stop {
+  fill: $darkPink;
   height: 16px;
   width: 16px;
   vertical-align: -10%;
@@ -65,6 +74,7 @@ a.p5-logo img {
 }
 
 .status-bar {
+  border-top: 1px solid $darkPink;
   background: $veryLightGray;
   min-height: 1em;
   font-family: $codeFont;
@@ -90,10 +100,9 @@ a.p5-logo img {
 .panes {
   flex: 1;
   display: flex;
-  border-top: 4px solid $veryLightGray;
+  border-top: 1px solid $darkPink;
 
   .editor-holder {
-    border-right: 4px solid $veryLightGray;
     flex: 1;
 
     /* We need this for horizontal scrolling to work properly.
@@ -110,7 +119,7 @@ a.p5-logo img {
     flex: 1;
     display: flex;
     flex-direction: column;
-    border-right: 4px solid $veryLightGray;
+    border-left: 16px solid $veryLightGray;
   }
 
   .preview-holder-wrapper iframe {
