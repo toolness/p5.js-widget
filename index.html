@@ -62,6 +62,11 @@ function setup() {
   <a href="http://processing.toolness.org">friendly errors</a>.
 </p>
 
+<p>
+  Here's what happens when the sketch has runtime errors. Note that the
+  exact description of the error is browser-specific and can't be changed.
+</p>
+
 <script type="text/p5" data-autoplay data-hide-sourcecode>
 function setup() {
   // Reference a non-existent variable...
@@ -69,11 +74,23 @@ function setup() {
 }
 </script>
 
+<p>
+  Here's what happens when the sketch has syntax errors (which prevent the
+  sketch from running entirely). Currently, the syntax errors are
+  browser-specific, though this may change in the future.
+</p>
+
 <script type="text/p5" data-autoplay data-hide-sourcecode>
 // Syntax error (no parentheses after function name)
 function setup {
 }
 </script>
+
+<p>
+  Here's what happens when the sketch is in a loop for more than
+  one second (which is a good indication that the user has accidentally
+  written an infinite loop). The message is <em>not</em> browser-specific.
+</p>
 
 <script type="text/p5" data-hide-sourcecode>
 function setup() {
