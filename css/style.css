@@ -40,6 +40,18 @@ button:hover {
   background: lightgray;
 }
 
+a.p5-logo {
+  margin-left: 10px;
+  margin-right: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+a.p5-logo img {
+  height: 25px;
+}
+
 .app {
   display: flex;
   flex-direction: column;

@@ -93,6 +93,9 @@ export default class App extends React.Component<AppProps, AppState> {
     return (
       <div className="app">
         <div className="toolbar">
+          <a className="p5-logo" href="http://p5js.org/" target="_blank">
+            <img src="static/img/p5js-beta.svg" alt="p5js.org"/>
+          </a>
           <button onClick={this.handlePlayClick}>Play</button>
           {this.state.isPlaying
             ? <button onClick={this.handleStopClick}>Stop</button>
