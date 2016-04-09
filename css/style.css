@@ -53,6 +53,8 @@ button:hover {
 
 .error-message {
   .error-message-line {
+    font-family: Karla;
+    font-weight: bold;
     color: red;
   }
 }
