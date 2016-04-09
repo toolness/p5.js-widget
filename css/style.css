@@ -36,7 +36,7 @@ button {
   background: inherit;
   color: $darkPink;
   border-radius: 2px;
-  padding: 8px;
+  padding: 2px 12px;
   cursor: pointer;
 }
 
@@ -93,7 +93,7 @@ a.p5-logo img {
   display: flex;
 
   button {
-    margin: 4px;
+    margin: 10px;
   }
 }
 
