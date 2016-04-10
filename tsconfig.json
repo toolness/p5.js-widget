@@ -13,6 +13,7 @@
     "lib/falafel.ts",
     "lib/main.tsx",
     "lib/app.tsx",
+    "lib/toolbar.tsx",
     "lib/editor.tsx",
     "lib/preview.tsx"
   ],
