@@ -22,7 +22,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "webpack && echo \"Yay, it compiles.\"",
     "bundle": "webpack",
     "start": "webpack-dev-server --host 0.0.0.0"
   },
