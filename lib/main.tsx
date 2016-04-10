@@ -21,8 +21,10 @@ function start() {
     previewWidth = DEFAULT_PREVIEW_WIDTH;
   }
 
+  initialContent = initialContent.replace(/\r\n/g, '\n').trim();
+
   ReactDOM.render(
-    <App initialContent={initialContent.trim()}
+    <App initialContent={initialContent}
          previewWidth={previewWidth}
          autoplay={autoplay} />,
     document.getElementById('app-holder')
