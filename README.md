@@ -35,6 +35,11 @@ of choice. It really makes working on code a lot easier, thanks to
 auto-completion and a bunch of other useful features that make it feel
 like you've got an experienced coder watching your back.
 
+## Tests
+
+The test suite can be run on the development server at
+http://localhost:8080/test/, or on the command-line with `npm test`.
+
 [website]: https://toolness.github.io/p5.js-widget/
 [TypeScript]: http://typescriptlang.org/
 [React]: http://facebook.github.io/react/
