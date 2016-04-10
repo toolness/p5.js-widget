@@ -17,12 +17,16 @@
     "style-loader": "^0.13.1",
     "ts-loader": "^0.8.1",
     "typescript": "^1.8.9",
-    "webpack": "^1.12.14",
+    "webpack": "^1.12.14"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5",
+    "mocha-phantomjs": "^4.0.2",
+    "chai": "^3.5.0",
     "webpack-dev-server": "^1.14.1"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "webpack && echo \"Yay, it compiles.\"",
+    "test": "webpack && mocha-phantomjs test/index.html",
     "bundle": "webpack",
     "start": "webpack-dev-server --host 0.0.0.0"
   },
