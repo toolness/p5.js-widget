@@ -56,8 +56,13 @@ a.p5-logo {
   justify-content: center;
 }
 
-a.p5-logo img {
+a.p5-logo svg {
   height: 25px;
+  width: 55px;
+}
+
+a.p5-logo svg use {
+  fill: $darkPink;
 }
 
 .media-play, .media-stop {

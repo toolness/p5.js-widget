@@ -2465,5 +2465,6 @@ declare namespace JSX {
         stop: React.SVGProps;
         text: React.SVGProps;
         tspan: React.SVGProps;
+        use: React.SVGProps;
     }
 }
