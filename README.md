@@ -1,4 +1,6 @@
-This is an experimental widget to make it easier to embed editable
+[![Build Status](https://travis-ci.org/toolness/p5.js-widget.svg?branch=master)](https://travis-ci.org/toolness/p5.js-widget)
+
+This is a widget to make it easier to embed editable
 p5 sketches in blog posts, interactive curricula, and other places.
 
 For more information on its usage, please see the [website][].
