@@ -55,8 +55,9 @@ export default class Preview extends React.Component<Props, State> {
     iframe.setAttribute('src', 'preview-frame.html');
     iframe.setAttribute('width', this.props.width.toString());
     iframe.addEventListener('load', () => {
-      // TODO: Do this in a way that doesn't mess things up if we
-      // prematurely unmount.
+      // Note that this should never be called if we're already unmounted,
+      // since that means the iframe will have been removed from the DOM,
+      // in which case it shouldn't be emitting events anymore.
       let frame = iframe.contentWindow as PreviewFrameProxy;
       frame.startSketch(content, '0.4.23', 1000,
                         LOOP_CHECK_FUNC_NAME, this.props.onError);
