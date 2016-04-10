@@ -26,6 +26,10 @@
     "bundle": "webpack",
     "start": "webpack-dev-server --host 0.0.0.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/toolness/p5.js-widget.git"
+  },
   "author": "Atul Varma <varmaa@gmail.com>",
   "license": "ISC"
 }
