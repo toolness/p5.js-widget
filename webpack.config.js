@@ -1,7 +1,8 @@
 module.exports = {
   entry: {
-    main: './lib/main.tsx',
-    tests: './test/main.tsx'
+    'main': './lib/main.tsx',
+    'preview-frame': './lib/preview-frame.ts',
+    'tests': './test/main.tsx'
   },
   output: {
     filename: '[name].bundle.js'
