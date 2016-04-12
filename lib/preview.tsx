@@ -46,7 +46,7 @@ export default class Preview extends React.Component<Props, State> {
       // Note that this should never be called if we're already unmounted,
       // since that means the iframe will have been removed from the DOM,
       // in which case it shouldn't be emitting events anymore.
-      let frame = iframe.contentWindow as PreviewFrameProxy;
+      let frame = iframe.contentWindow as PreviewFrame;
       frame.startSketch(content, '0.4.23', 1000,
                         LOOP_CHECK_FUNC_NAME, this.props.onError);
     });
