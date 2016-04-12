@@ -17,7 +17,7 @@ rm -rf \
   __temp_index.html
 mv main.bundle.js __temp_main.bundle.js
 mv main.bundle.js.map __temp_main.bundle.js.map
-mv preview-frame.js __temp_preview-frame.bundle.js
+mv preview-frame.bundle.js __temp_preview-frame.bundle.js
 mv preview-frame.bundle.js.map __temp_preview-frame.bundle.js.map
 cp -r static/ __temp_static/
 cp p5-widget.html __temp_p5-widget.html
