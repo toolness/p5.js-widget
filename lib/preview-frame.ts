@@ -1,6 +1,6 @@
 require("../css/preview-frame.css");
 
-var global = window as any;
+var global = window as PreviewFrameWindow;
 
 function loadP5(version: string, cb?: () => void) {
   var url = '//cdnjs.cloudflare.com/ajax/libs/p5.js/' + version + '/p5.js';
@@ -14,7 +14,7 @@ function loadP5(version: string, cb?: () => void) {
   document.body.appendChild(script);
 }
 
-function LoopChecker(sketch, funcName, maxRunTime) {
+function LoopChecker(sketch: string, funcName: string, maxRunTime: number) {
   var self = {
     wasTriggered: false,
     getLineNumber() {
@@ -47,14 +47,15 @@ function LoopChecker(sketch, funcName, maxRunTime) {
   return self;
 }
 
-function startSketch(sketch, p5version, maxRunTime, loopCheckFuncName,
-                     errorCb) {
+function startSketch(sketch: string, p5version: string, maxRunTime: number,
+                     loopCheckFuncName: string,
+                     errorCb: PreviewFrameErrorReporter) {
   var sketchScript = document.createElement('script');
   var loopChecker = LoopChecker(sketch, loopCheckFuncName, maxRunTime);
 
   sketchScript.textContent = sketch;
 
-  global.addEventListener('error', function(e) {
+  global.addEventListener('error', function(e: ErrorEvent) {
     var message = e.message;
     var line = undefined;
 
