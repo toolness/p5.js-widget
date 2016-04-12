@@ -1,3 +1,5 @@
+require("../css/preview-frame.css");
+
 var global = window as any;
 
 function loadP5(version: string, cb?: () => void) {
