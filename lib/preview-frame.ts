@@ -1,6 +1,6 @@
 require("../css/preview-frame.css");
 
-declare interface PreviewFrameWindow extends PreviewFrame {
+interface PreviewFrameWindow extends PreviewFrame {
   // This is exported by p5 when it's in global mode.
   noLoop: () => void;
 }
