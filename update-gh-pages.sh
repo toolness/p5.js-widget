@@ -62,4 +62,4 @@ echo "Pushing changes."
 
 git push
 
-git checkout master
+echo "Done! You are now on the gh-pages branch."
