@@ -5,13 +5,13 @@ declare interface PreviewFrameWindow extends PreviewFrame {
   noLoop: () => void;
 }
 
-var global = window as PreviewFrameWindow;
+let global = window as PreviewFrameWindow;
 
 function loadP5(version: string, cb?: () => void) {
-  var url = '//cdnjs.cloudflare.com/ajax/libs/p5.js/' + version + '/p5.js';
-  var script = document.createElement('script');
+  let url = '//cdnjs.cloudflare.com/ajax/libs/p5.js/' + version + '/p5.js';
+  let script = document.createElement('script');
 
-  cb = cb || function() {};
+  cb = cb || (() => {});
 
   script.onload = cb;
   script.setAttribute('src', url);
@@ -20,13 +20,13 @@ function loadP5(version: string, cb?: () => void) {
 }
 
 function LoopChecker(sketch: string, funcName: string, maxRunTime: number) {
-  var self = {
+  let self = {
     wasTriggered: false,
     getLineNumber() {
-      var index = loopCheckFailureRange[0];
-      var line = 1;
+      let index = loopCheckFailureRange[0];
+      let line = 1;
 
-      for (var i = 0; i < index; i++) {
+      for (let i = 0; i < index; i++) {
         if (sketch[i] === '\n')
           line++;
       }
@@ -34,10 +34,10 @@ function LoopChecker(sketch: string, funcName: string, maxRunTime: number) {
       return line;
     }
   };
-  var startTime = Date.now();
-  var loopCheckFailureRange = null;
+  let startTime = Date.now();
+  let loopCheckFailureRange: Array<number> = null;
 
-  global[funcName] = function(range) {
+  global[funcName] = (range: Array<number>) => {
     if (Date.now() - startTime > maxRunTime) {
       self.wasTriggered = true;
       loopCheckFailureRange = range;
@@ -45,7 +45,7 @@ function LoopChecker(sketch: string, funcName: string, maxRunTime: number) {
     }
   };
 
-  setInterval(function() {
+  setInterval(() => {
     startTime = Date.now();
   }, maxRunTime / 2);
 
@@ -55,14 +55,14 @@ function LoopChecker(sketch: string, funcName: string, maxRunTime: number) {
 function startSketch(sketch: string, p5version: string, maxRunTime: number,
                      loopCheckFuncName: string,
                      errorCb: PreviewFrameErrorReporter) {
-  var sketchScript = document.createElement('script');
-  var loopChecker = LoopChecker(sketch, loopCheckFuncName, maxRunTime);
+  let sketchScript = document.createElement('script');
+  let loopChecker = LoopChecker(sketch, loopCheckFuncName, maxRunTime);
 
   sketchScript.textContent = sketch;
 
-  global.addEventListener('error', function(e: ErrorEvent) {
-    var message = e.message;
-    var line = undefined;
+  global.addEventListener('error', (e: ErrorEvent) => {
+    let message = e.message;
+    let line = undefined;
 
     if (loopChecker.wasTriggered) {
       message = "Your loop is taking too long to run.";
