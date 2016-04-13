@@ -17,6 +17,7 @@
     "style-loader": "^0.13.1",
     "ts-loader": "^0.8.1",
     "typescript": "^1.8.9",
+    "underscore": "^1.8.3",
     "webpack": "^1.12.14"
   },
   "devDependencies": {

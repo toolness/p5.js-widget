@@ -8,10 +8,9 @@ var p5Widget = (function() {
   ];
   var DEFAULT_HEIGHT = 300;
 
-  var myScriptEl = getMyScriptEl();
+  var myScriptEl = getMyScriptEl() as HTMLScriptElement;
   var myBaseURL = getMyBaseURL(myScriptEl.src);
   var autoload = !myScriptEl.hasAttribute('data-manual');
-  var self = {};
 
   function getMyBaseURL(url) {
     return url.slice(0, -MY_FILENAME.length);
@@ -62,8 +61,15 @@ var p5Widget = (function() {
     [].slice.call(scripts).forEach(replaceScriptWithWidget);
   }
 
-  self.baseURL = myBaseURL;
-  self.url = myBaseURL + MY_FILENAME;
+  var self = {
+    baseURL: myBaseURL,
+    url: myBaseURL + MY_FILENAME,
+    replaceScript: replaceScriptWithWidget,
+    replaceAll: replaceAllScriptsWithWidget,
+    defaults: {
+      height: DEFAULT_HEIGHT
+    }
+  };
 
   if (autoload) {
     if (document.readyState === 'complete') {
@@ -73,11 +79,7 @@ var p5Widget = (function() {
     }
   }
 
-  self.replaceScript = replaceScriptWithWidget;
-  self.replaceAll = replaceAllScriptsWithWidget;
-  self.defaults = {
-    height: DEFAULT_HEIGHT
-  };
-
   return self;
 })();
+
+window['p5Widget'] = p5Widget;
