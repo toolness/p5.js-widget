@@ -1,4 +1,7 @@
 var _ = require('underscore');
+var webpack = require('webpack');
+
+var production = process.env.NODE_ENV === 'production';
 
 var baseConfig = {
   resolve: {
@@ -16,6 +19,16 @@ var baseConfig = {
       }
     ]
   },
+  plugins: [
+  ].concat(
+    production ? [
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false
+        }
+      })
+    ] : []
+  ),
   postcss: function () {
     return [require('autoprefixer'), require('precss')];
   }

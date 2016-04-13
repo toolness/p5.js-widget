@@ -5,7 +5,7 @@ set -eu
 echo "Regenerating bundle."
 
 rm -rf *.bundle.*
-npm run bundle
+NODE_ENV=production npm run bundle
 
 echo "Cloning website into ./website/."
 
