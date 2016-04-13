@@ -38,6 +38,8 @@ module.exports = configurations({
   }
 },
 {
+  // The p5-widget.js file is directly referenced by widget embedders, so
+  // we want the filename and path to be as simple as possible.
   entry: './lib/p5-widget.ts',
   output: {
     filename: 'p5-widget.js'
