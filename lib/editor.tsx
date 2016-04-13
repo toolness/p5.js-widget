@@ -4,6 +4,8 @@ import CodeMirror = require("codemirror");
 
 import "codemirror/mode/javascript/javascript.js";
 
+import PureComponent from "./pure-component";
+
 // It seems like CodeMirror behaves oddly with a flexbox layout, so
 // we will manually size it. However, Chrome seems to have a bug
 // whereby we need to wait a bit before resizing it after the
@@ -19,7 +21,7 @@ interface Props {
 interface State {
 }
 
-export default class Editor extends React.Component<Props, State> {
+export default class Editor extends PureComponent<Props, State> {
   _cm: CodeMirror.Editor
   _resizeTimeout: number
   _errorLineHandle: any

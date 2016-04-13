@@ -13,6 +13,7 @@
     "precss": "^1.4.0",
     "raw-loader": "^0.5.1",
     "react": "^0.14.8",
+    "react-addons-pure-render-mixin": "^0.14.8",
     "react-dom": "^0.14.8",
     "style-loader": "^0.13.1",
     "ts-loader": "^0.8.1",

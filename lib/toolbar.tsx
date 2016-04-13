@@ -1,5 +1,7 @@
 import React = require("react");
 
+import PureComponent from "./pure-component";
+
 interface Props {
   onPlayClick: () => void,
   onStopClick?: () => void,
@@ -22,7 +24,7 @@ let OpenIconicMediaStop = () => (
   </svg>
 );
 
-export default class Toolbar extends React.Component<Props, State> {
+export default class Toolbar extends PureComponent<Props, State> {
   render() {
     return (
       <div className="toolbar">

@@ -1,5 +1,6 @@
 import React = require("react");
 
+import PureComponent from "./pure-component";
 import Toolbar from "./toolbar";
 import Editor from "./editor";
 import Preview from "./preview";
@@ -36,7 +37,7 @@ let ErrorMessage = (props: ErrorMessage) => (
   </div>
 );
 
-export default class App extends React.Component<AppProps, AppState> {
+export default class App extends PureComponent<AppProps, AppState> {
   constructor(props) {
     super(props);
     this.state = {

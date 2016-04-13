@@ -3,6 +3,7 @@ import esprima = require("esprima");
 
 import falafel from "./falafel";
 import LoopInserter from "./loop-inserter";
+import PureComponent from "./pure-component";
 
 const LOOP_CHECK_FUNC_NAME = '__loopCheck';
 
@@ -18,7 +19,7 @@ interface State {
 
 }
 
-export default class Preview extends React.Component<Props, State> {
+export default class Preview extends PureComponent<Props, State> {
   _iframe: HTMLIFrameElement
 
   resetIframe() {
