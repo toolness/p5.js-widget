@@ -13,6 +13,7 @@
     "typings/chai/chai.d.ts",
     "test/main.tsx",
     "test/test-loop-inserter.tsx",
+    "lib/defaults.ts",
     "lib/p5-widget.ts",
     "lib/preview-frame.ts",
     "lib/falafel.ts",

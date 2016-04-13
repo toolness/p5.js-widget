@@ -1,3 +1,5 @@
+import * as defaults from "./defaults";
+
 const MY_FILENAME = 'p5-widget.js';
 const IFRAME_FILENAME = 'p5-widget.html';
 const IFRAME_STYLE = [
@@ -5,7 +7,6 @@ const IFRAME_STYLE = [
   'border: 1px solid #ec245e',
   'box-sizing: border-box'
 ];
-const DEFAULT_HEIGHT = 300;
 
 let myScriptEl = getMyScriptEl() as HTMLScriptElement;
 let myBaseURL = getMyBaseURL(myScriptEl.src);
@@ -32,7 +33,7 @@ function replaceScriptWithWidget(el) {
   let qsArgs = ['sketch=' + encodeURIComponent(el.textContent)];
   let style = IFRAME_STYLE.slice();
 
-  if (isNaN(height)) height = DEFAULT_HEIGHT;
+  if (isNaN(height)) height = defaults.HEIGHT;
 
   if (!isNaN(previewWidth) && previewWidth >= 0) {
     qsArgs.push('previewWidth=' + previewWidth);
@@ -73,7 +74,5 @@ window['p5Widget'] = {
   url: myBaseURL + MY_FILENAME,
   replaceScript: replaceScriptWithWidget,
   replaceAll: replaceAllScriptsWithWidget,
-  defaults: {
-    height: DEFAULT_HEIGHT
-  }
+  defaults: defaults
 };
