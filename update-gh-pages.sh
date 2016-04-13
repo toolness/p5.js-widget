@@ -21,7 +21,7 @@ echo "Copying files in working dir to ./website/."
 
 cp -r static/ website/static/
 cp \
-  p5-widget.html p5-widget.js \
+  p5-widget.html p5-widget.js p5-widget.js.map \
   preview-frame.html index.html \
   main.bundle.js* \
   preview-frame.bundle.js* \
@@ -33,7 +33,7 @@ cd website
 git add \
   main.bundle.js main.bundle.js.map \
   preview-frame.bundle.js preview-frame.bundle.js.map \
-  static/ p5-widget.html p5-widget.js \
+  static/ p5-widget.html p5-widget.js p5-widget.js.map \
   preview-frame.html index.html
 
 #echo "Done. Run 'git diff --staged' to review changes."
