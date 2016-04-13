@@ -41,8 +41,7 @@ button {
 }
 
 button:hover,
-button:hover .media-play,
-button:hover .media-stop {
+button:hover .open-iconic {
   fill: $blueish;
   color: $blueish;
   border-color: $blueish;
@@ -60,7 +59,7 @@ a.p5-logo img {
   height: 25px;
 }
 
-.media-play, .media-stop {
+.open-iconic {
   fill: $darkPink;
   height: 16px;
   width: 16px;
