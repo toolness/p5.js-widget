@@ -14,7 +14,15 @@ $(function() {
 
   $("#script-tag-example").text('<script src="' + widgetURL + '"></script>');
 
-  $("#default-height").text(p5Widget.defaults.HEIGHT);
+  $("[data-insert-default]").each(function() {
+    var name = this.getAttribute('data-insert-default');
+
+    if (name in p5Widget.defaults) {
+      $(this).text(p5Widget.defaults[name]);
+    } else {
+      console.log("p5Widget.defaults." + name + " does not exist!");
+    }
+  });
 
   $('script[type="text/p5"]').each(function() {
     if (this.hasAttribute('data-hide-sourcecode')) return;

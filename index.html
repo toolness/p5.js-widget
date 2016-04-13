@@ -116,7 +116,7 @@ function setup() {
 
 <p>
   The height of the widget (and consequently the sketch preview pane too)
-  defaults to <span id="default-height"></span>px and can be changed
+  defaults to <span data-insert-default="HEIGHT"></span>px and can be changed
   via the <code>data-height</code> attribute like so:
 </p>
 
@@ -128,8 +128,9 @@ function setup() {
 </p>
 
 <p>
-  The width of the sketch preview pane can be set via the
-  <code>data-preview-width</code> attribute like so:
+  The width of the sketch preview pane defaults to
+  <span data-insert-default="PREVIEW_WIDTH"></span>px and can be set
+  via the <code>data-preview-width</code> attribute like so:
 </p>
 
 <script type="text/p5" data-autoplay data-preview-width="400">
@@ -141,6 +142,12 @@ function setup() {
 </script>
 
 <h2 id="specifying-p5-version">Specifying The p5 Version</h2>
+
+<p>
+  Currently, the widget defaults to using p5 version
+  <span data-insert-default="P5_VERSION"></span>, but this will change
+  as new versions of p5 and this widget are released.
+</p>
 
 <p>
   It's possible to optionally specify the p5 version to use in your
