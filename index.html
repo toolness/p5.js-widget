@@ -14,7 +14,18 @@
   <a href="http://p5js.org">p5.js</a> sketches in blog posts,
   interactive curricula, and other places.
 </p>
-<h2>Quick Start</h2>
+
+<h2>Table of Contents</h2>
+
+<ol>
+  <li><a href="#quick-start">Quick Start</a>
+  <li><a href="#autoplay">Autoplay</a>
+  <li><a href="#error-handling">Error Handling</a>
+  <li><a href="#resizing">Resizing</a>
+  <li><a href="#specifying-p5-version">Specifying The p5 Version</a>
+</ol>
+
+<h2 id="quick-start">Quick Start</h2>
 
 <p>
   To use this widget, add the following script to your page:
@@ -37,7 +48,7 @@ function draw() {
 }
 </script>
 
-<h2>Autoplay</h2>
+<h2 id="autoplay">Autoplay</h2>
 
 <p>
   Note that by default, the sketch will <em>not</em> start playing
@@ -55,7 +66,7 @@ function setup() {
 }
 </script>
 
-<h2>Error Handling</h2>
+<h2 id="error-handling">Error Handling</h2>
 
 <p>
   The widget is intended to be resilient against various types of
@@ -101,7 +112,7 @@ function setup() {
 }
 </script>
 
-<h2>Resizing</h2>
+<h2 id="resizing">Resizing</h2>
 
 <p>
   The height of the widget (and consequently the sketch preview pane too)
@@ -128,6 +139,20 @@ function setup() {
   noLoop();
 }
 </script>
+
+<h2 id="specifying-p5-version">Specifying The p5 Version</h2>
+
+<p>
+  It's possible to optionally specify the p5 version to use in your
+  widget via the <code>data-p5-version</code> attribute:
+</p>
+
+<pre><code class="language-markup">&lt;script type="text/p5" data-p5-version="0.2.0"&gt;</code></pre>
+
+<p>
+  A complete list of available versions can be found at
+  <a href="https://cdnjs.com/libraries/p5.js">cdnjs.com/libraries/p5.js</a>.
+</p>
 
 <script src="static/vendor/jquery.js"></script>
 <script src="p5-widget.js" data-manual></script>
