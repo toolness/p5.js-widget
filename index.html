@@ -20,6 +20,7 @@
 <ol>
   <li><a href="#quick-start">Quick Start</a>
   <li><a href="#autoplay">Autoplay</a>
+  <li><a href="#implicit-setup">Implicit <code>setup()</code></a>
   <li><a href="#error-handling">Error Handling</a>
   <li><a href="#resizing">Resizing</a>
   <li><a href="#specifying-p5-version">Specifying The p5 Version</a>
@@ -64,6 +65,20 @@ function setup() {
   // Don't slow down the whole page.
   noLoop();
 }
+</script>
+
+<h2 id="implicit-setup">Implicit <code>setup()</code></h2>
+
+<p>
+  It can be quite difficult for beginners to understand the
+  concept (and syntax) of functions, so the widget will automatically
+  wrap the user's code in a <code>setup()</code> function declaration
+  behind the scenes if needed:
+</p>
+
+<script type="text/p5" data-autoplay>
+background(255, 0, 200);
+noLoop();
 </script>
 
 <h2 id="error-handling">Error Handling</h2>
