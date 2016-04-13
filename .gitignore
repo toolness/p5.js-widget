@@ -3,3 +3,4 @@ node_modules
 *.bundle.js.map
 p5-widget.js
 p5-widget.js.map
+website

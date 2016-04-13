@@ -7,45 +7,29 @@ echo "Regenerating bundle."
 rm -rf *.bundle.*
 npm run bundle
 
-echo "Copying/moving files in working dir."
+echo "Cloning website into ./website/."
 
-rm -rf \
-  __temp_main.bundle.js __temp_main.bundle.js.map \
-  __temp_preview-frame.bundle.js __temp_preview-frame.bundle.js.map \
-  __temp_static \
-  __temp_p5-widget.html __temp_p5-widget.js __temp_preview-frame.html \
-  __temp_index.html
-mv main.bundle.js __temp_main.bundle.js
-mv main.bundle.js.map __temp_main.bundle.js.map
-mv preview-frame.bundle.js __temp_preview-frame.bundle.js
-mv preview-frame.bundle.js.map __temp_preview-frame.bundle.js.map
-cp -r static/ __temp_static/
-cp p5-widget.html __temp_p5-widget.html
-cp p5-widget.js __temp_p5-widget.js
-cp preview-frame.html __temp_preview-frame.html
-cp index.html __temp_index.html
+rm -rf website
+git clone . website -b gh-pages -o parentdir
+cd website
+git remote add upstream https://github.com/toolness/p5.js-widget.git
+git pull upstream gh-pages
+git rm -rf static/
+cd ..
 
-echo "Switching to gh-pages branch."
+echo "Copying files in working dir to ./website/."
 
-git checkout gh-pages
-
-rm -rf \
-  main.bundle.js main.bundle.js.map \
-  preview-frame.bundle.js preview-frame.bundle.js.map \
-  static p5-widget.html p5-widget.js \
-  preview-frame.html index.html
-mv __temp_main.bundle.js main.bundle.js
-mv __temp_main.bundle.js.map main.bundle.js.map
-mv __temp_preview-frame.bundle.js preview-frame.bundle.js
-mv __temp_preview-frame.bundle.js.map preview-frame.bundle.js.map
-mv __temp_static static
-mv __temp_p5-widget.html p5-widget.html
-mv __temp_p5-widget.js p5-widget.js
-mv __temp_preview-frame.html preview-frame.html
-mv __temp_index.html index.html
+cp -r static/ website/static/
+cp \
+  p5-widget.html p5-widget.js \
+  preview-frame.html index.html \
+  main.bundle.js* \
+  preview-frame.bundle.js* \
+  website/
 
 echo "Staging new/changed files."
 
+cd website
 git add \
   main.bundle.js main.bundle.js.map \
   preview-frame.bundle.js preview-frame.bundle.js.map \
@@ -60,6 +44,8 @@ git commit -m "Rebuild site."
 
 echo "Pushing changes."
 
-git push
+git push parentdir gh-pages
+cd ..
+git push origin gh-pages
 
-echo "Done! You are now on the gh-pages branch."
+echo "Done!"
