@@ -7,6 +7,7 @@ import LoopInserter from "./loop-inserter";
 const LOOP_CHECK_FUNC_NAME = '__loopCheck';
 
 interface Props {
+  p5version: string,
   width: number,
   content: string,
   timestamp: number,
@@ -47,7 +48,7 @@ export default class Preview extends React.Component<Props, State> {
       // since that means the iframe will have been removed from the DOM,
       // in which case it shouldn't be emitting events anymore.
       let frame = iframe.contentWindow as PreviewFrame;
-      frame.startSketch(content, '0.4.23', 1000,
+      frame.startSketch(content, this.props.p5version, 1000,
                         LOOP_CHECK_FUNC_NAME, this.props.onError);
     });
     this.refs.container.appendChild(iframe);

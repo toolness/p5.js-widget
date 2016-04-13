@@ -28,6 +28,7 @@ var p5Widget = (function() {
     var iframe = document.createElement('iframe');
     var height = parseInt(el.getAttribute('data-height'));
     var previewWidth = parseInt(el.getAttribute('data-preview-width'));
+    var p5version = el.getAttribute('data-p5-version');
     var autoplay = el.hasAttribute('data-autoplay');
     var url;
     var qsArgs = ['sketch=' + encodeURIComponent(el.textContent)];
@@ -37,6 +38,10 @@ var p5Widget = (function() {
 
     if (!isNaN(previewWidth) && previewWidth >= 0) {
       qsArgs.push('previewWidth=' + previewWidth);
+    }
+
+    if (p5version) {
+      qsArgs.push('p5version=' + encodeURIComponent(p5version));
     }
 
     if (autoplay) {

@@ -12,6 +12,7 @@ interface ErrorMessage {
 interface AppProps {
   initialContent: string,
   previewWidth: number,
+  p5version: string,
   autoplay?: boolean
 }
 
@@ -105,6 +106,7 @@ export default class App extends React.Component<AppProps, AppState> {
           <div className="preview-holder-wrapper">
           {this.state.isPlaying
             ? <Preview content={this.state.previewContent}
+                       p5version={this.props.p5version}
                        width={this.props.previewWidth}
                        timestamp={this.state.startPlayTimestamp}
                        onError={this.handlePreviewError} />

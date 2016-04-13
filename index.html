@@ -22,6 +22,7 @@
   <li><a href="#autoplay">Autoplay</a>
   <li><a href="#error-handling">Error Handling</a>
   <li><a href="#resizing">Resizing</a>
+  <li><a href="#specifying-p5-version">Specifying The p5 Version</a>
 </ol>
 
 <h2 id="quick-start">Quick Start</h2>
@@ -138,6 +139,20 @@ function setup() {
   noLoop();
 }
 </script>
+
+<h2 id="specifying-p5-version">Specifying The p5 Version</h2>
+
+<p>
+  It's possible to optionally specify the p5 version to use in your
+  widget via the <code>data-p5-version</code> attribute:
+</p>
+
+<pre><code class="language-markup">&lt;script type="text/p5" data-p5-version="0.2.0"&gt;</code></pre>
+
+<p>
+  A complete list of available versions can be found at
+  <a href="https://cdnjs.com/libraries/p5.js">cdnjs.com/libraries/p5.js</a>.
+</p>
 
 <script src="static/vendor/jquery.js"></script>
 <script src="p5-widget.js" data-manual></script>
