@@ -23,6 +23,8 @@ interface AppProps {
 //
 // https://github.com/DefinitelyTyped/DefinitelyTyped/pull/4809
 interface AppState {
+  canUndo?: boolean,
+  canRedo?: boolean,
   isPlaying?: boolean
   startPlayTimestamp?: number
   previewContent?: string
@@ -41,6 +43,8 @@ export default class App extends PureComponent<AppProps, AppState> {
   constructor(props) {
     super(props);
     this.state = {
+      canUndo: false,
+      canRedo: false,
       previewContent: this.props.initialContent,
       editorContent: this.props.initialContent
     };
@@ -52,8 +56,13 @@ export default class App extends PureComponent<AppProps, AppState> {
     }
   }
 
-  handleEditorChange = (newValue: string) => {
-    this.setState({ editorContent: newValue });
+  handleEditorChange = (newValue: string, canUndo: boolean,
+                        canRedo: boolean) => {
+    this.setState({
+      editorContent: newValue,
+      canUndo: canUndo,
+      canRedo: canRedo
+    });
   }
 
   handlePreviewError = (message: string, line?: number) => {
@@ -85,6 +94,19 @@ export default class App extends PureComponent<AppProps, AppState> {
     this.setState({ isPlaying: false });
   }
 
+  handleUndoClick = () => {
+    this.refs.editor.undo();
+  }
+
+  handleRedoClick = () => {
+    this.refs.editor.redo();
+  }
+
+  refs: {
+    [key: string]: (any),
+    editor: Editor
+  }
+
   render() {
     let errorLine = null;
     let canRevert = (this.state.editorContent !== this.props.initialContent);
@@ -99,9 +121,12 @@ export default class App extends PureComponent<AppProps, AppState> {
         <Toolbar
          onPlayClick={this.handlePlayClick}
          onStopClick={this.state.isPlaying && this.handleStopClick}
+         onUndoClick={this.state.canUndo && this.handleUndoClick}
+         onRedoClick={this.state.canRedo && this.handleRedoClick}
          onRevertClick={canRevert && this.handleRevertClick} />
         <div className="panes">
-          <Editor content={this.state.editorContent}
+          <Editor ref="editor"
+                  content={this.state.editorContent}
                   errorLine={errorLine}
                   onChange={this.handleEditorChange} />
           <div className="preview-holder-wrapper">

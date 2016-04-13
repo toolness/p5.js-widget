@@ -5,6 +5,8 @@ import PureComponent from "./pure-component";
 interface Props {
   onPlayClick: () => void,
   onStopClick?: () => void,
+  onUndoClick?: () => void,
+  onRedoClick?: () => void,
   onRevertClick?: () => void
 }
 
@@ -41,6 +43,12 @@ export default class Toolbar extends PureComponent<Props, State> {
               Stop
             </button>
           : null }
+        {this.props.onUndoClick
+          ? <button onClick={this.props.onUndoClick}>Undo</button>
+          : null}
+        {this.props.onRedoClick
+          ? <button onClick={this.props.onRedoClick}>Redo</button>
+          : null}
         {this.props.onRevertClick
           ? <button onClick={this.props.onRevertClick}>Revert</button>
           : null}

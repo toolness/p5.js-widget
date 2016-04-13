@@ -15,7 +15,7 @@ const INITIAL_RESIZE_DELAY_MS = 100;
 interface Props {
   content?: string
   errorLine?: number
-  onChange?: (newValue: string) => any
+  onChange?: (newValue: string, canUndo: boolean, canRedo: boolean) => void
 }
 
 interface State {
@@ -56,7 +56,9 @@ export default class Editor extends PureComponent<Props, State> {
     });
     this._cm.on('change', () => {
       if (this.props.onChange) {
-        this.props.onChange(this._cm.getValue());
+        let size = this._cm.getDoc().historySize();
+        this.props.onChange(this._cm.getValue(),
+                            size.undo > 0, size.redo > 0);
       }
     });
     this.resizeEditor();
@@ -71,6 +73,14 @@ export default class Editor extends PureComponent<Props, State> {
     this._cm = null;
     clearTimeout(this._resizeTimeout);
     window.removeEventListener('resize', this.resizeEditor, false);
+  }
+
+  undo() {
+    this._cm.getDoc().undo();
+  }
+
+  redo() {
+    this._cm.getDoc().redo();
   }
 
   resizeEditor = () => {
