@@ -1,8 +1,8 @@
 import React = require("react");
-import esprima = require("esprima");
 
 import falafel from "./falafel";
 import LoopInserter from "./loop-inserter";
+import makeImplicitSketch from "./implicit-sketch";
 import PureComponent from "./pure-component";
 
 const LOOP_CHECK_FUNC_NAME = '__loopCheck';
@@ -24,6 +24,8 @@ export default class Preview extends PureComponent<Props, State> {
 
   resetIframe() {
     let content = this.props.content;
+
+    content = makeImplicitSketch(content);
 
     try {
       content = falafel(content, {}, LoopInserter(function(node) {
