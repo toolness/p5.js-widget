@@ -18,6 +18,22 @@ export default function makeImplicitSketch(code: string) {
         return code;
       }
     }
+
+    if (statement.type === esprima.Syntax.VariableDeclaration) {
+      let varDecl = statement as ESTree.VariableDeclaration;
+
+      for (let j = 0; j < varDecl.declarations.length; j++) {
+        // This is a bit odd because our ESTree typings indicate
+        // that a VariableDeclarator.id is a Pattern, but it
+        // seems to actually be an Identifier, so we'll forcibly
+        // typecast it as such.
+        let id = varDecl.declarations[j].id as ESTree.Identifier;
+
+        if (id.name === "setup" || id.name === "draw") {
+          return code;
+        }
+      }
+    }
   }
 
   return "function setup() { " + code + " }";

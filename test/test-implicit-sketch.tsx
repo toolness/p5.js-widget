@@ -15,12 +15,22 @@ describe("makeImplicitSketch()", () => {
     ensureUnchanged("#W$OTN#$ROGK$#%OKRr<T$R>");
   });
 
-  it("does nothing to code w/ existing setup()", () => {
+  it("does nothing to code w/ setup() func decl", () => {
     ensureUnchanged("function setup() {}");
   });
 
-  it("does nothing to code w/ existing draw()", () => {
+  it("does nothing to code w/ setup var decl", () => {
+    ensureUnchanged("var setup = function() {}");
+    ensureUnchanged("let setup = function() {}");
+  });
+
+  it("does nothing to code w/ draw() func decl", () => {
     ensureUnchanged("function draw() {}");
+  });
+
+  it("does nothing to code w/ draw var decl", () => {
+    ensureUnchanged("var draw = function() {}");
+    ensureUnchanged("let draw = function() {}");
   });
 
   it("wraps code that lacks setup/draw in setup()", () => {
