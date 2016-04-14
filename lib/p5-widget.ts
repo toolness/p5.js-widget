@@ -12,7 +12,7 @@ let myScriptEl = getMyScriptEl() as HTMLScriptElement;
 let myBaseURL = getMyBaseURL(myScriptEl.src);
 let autoload = !myScriptEl.hasAttribute('data-manual');
 
-function getMyBaseURL(url) {
+function getMyBaseURL(url: string) {
   return url.slice(0, -MY_FILENAME.length);
 }
 
@@ -24,7 +24,7 @@ function getMyScriptEl() {
 }
 
 // http://stackoverflow.com/a/7557433/2422398
-function isElementInViewport(el) {
+function isElementInViewport(el: HTMLElement) {
   var rect = el.getBoundingClientRect();
 
   return (
