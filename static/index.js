@@ -1,3 +1,16 @@
+// http://stackoverflow.com/a/1173319/2422398
+function selectText(containerid) {
+  if (document.selection) {
+    var range = document.body.createTextRange();
+    range.moveToElementText(document.getElementById(containerid));
+    range.select();
+  } else if (window.getSelection) {
+    var range = document.createRange();
+    range.selectNode(document.getElementById(containerid));
+    window.getSelection().addRange(range);
+  }
+}
+
 $(function() {
   var FORCE_HTTPS = true;
   var widgetURL = p5Widget.url;
@@ -41,4 +54,8 @@ $(function() {
 
   Prism.highlightAll();
   p5Widget.replaceAll();
+
+  $("#script-tag-example").click(function() {
+    selectText(this.id);
+  });
 });
