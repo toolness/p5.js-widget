@@ -4,6 +4,7 @@ import PureComponent from "./pure-component";
 import Toolbar from "./toolbar";
 import Editor from "./editor";
 import Preview from "./preview";
+import { Autosaver } from "./autosaver";
 
 interface ErrorMessage {
   message: string,
@@ -14,6 +15,7 @@ interface AppProps {
   initialContent: string,
   previewWidth: number,
   p5version: string,
+  autosaver?: Autosaver,
   autoplay?: boolean
 }
 
@@ -51,7 +53,11 @@ export default class App extends PureComponent<AppProps, AppState> {
   }
 
   componentDidMount() {
-    if (this.props.autoplay) {
+    let autosave = this.props.autosaver && this.props.autosaver.restore();
+
+    if (autosave && autosave !== this.state.editorContent) {
+      this.setState({ editorContent: autosave });
+    } else if (this.props.autoplay) {
       this.handlePlayClick();
     }
   }
@@ -63,6 +69,7 @@ export default class App extends PureComponent<AppProps, AppState> {
       canUndo: canUndo,
       canRedo: canRedo
     });
+    this.props.autosaver.save(newValue);
   }
 
   handlePreviewError = (message: string, line?: number) => {

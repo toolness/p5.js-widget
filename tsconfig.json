@@ -17,6 +17,7 @@
     "test/test-implicit-sketch.tsx",
     "lib/pure-component.tsx",
     "lib/defaults.ts",
+    "lib/autosaver.ts",
     "lib/p5-widget.ts",
     "lib/preview-frame.ts",
     "lib/falafel.ts",

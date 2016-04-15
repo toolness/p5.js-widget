@@ -4,6 +4,7 @@ import ReactDOM = require("react-dom");
 import url = require("url");
 
 import * as defaults from "./defaults";
+import { SessionStorageAutosaver } from "./autosaver";
 import App from "./app";
 
 let defaultSketchJS = require("raw!./default-sketch.js") as string;
@@ -12,6 +13,7 @@ require("../css/style.css");
 
 function start() {
   let qs = url.parse(window.location.search, true).query;
+  let id = document.referrer + '_' + qs['id'];
   let autoplay = (qs['autoplay'] === 'on');
   let initialContent = qs['sketch'] || defaultSketchJS;
   let p5version = qs['p5version'] || defaults.P5_VERSION;
@@ -25,6 +27,7 @@ function start() {
 
   ReactDOM.render(
     <App initialContent={initialContent}
+         autosaver={new SessionStorageAutosaver(id)}
          p5version={p5version}
          previewWidth={previewWidth}
          autoplay={autoplay} />,
