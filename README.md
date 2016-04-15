@@ -27,6 +27,9 @@ Note that this project uses [TypeScript][] and [React][]. Many
 source files use [ECMAScript 2015][], TypeScript *and* [JSX][],
 which can make the code look a bit unfamiliar.
 
+If you're unfamiliar with React, consider reading the
+[React Tutorial for p5 Programmers][react-tutorial].
+
 ## TypeScript Editor Support
 
 While it's not required for making changes to the codebase, I
@@ -46,3 +49,4 @@ http://localhost:8080/test/, or on the command-line with `npm test`.
 [JSX]: https://facebook.github.io/react/docs/jsx-in-depth.html
 [ECMAScript 2015]: https://babeljs.io/docs/learn-es2015/
 [TypeScript Editor Support]: https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support
+[react-tutorial]: https://github.com/toolness/p5.js-widget/wiki/A-React-Tutorial-for-p5-Programmers
