@@ -3,6 +3,7 @@
   --light-pink: #ffe5ea;
   --dark-pink: #ec245e;
   --blueish: #30b8e6;
+  --ui-font: Montserrat, sans-serif;
   --code-font: "Monaco", "Menlo", "Ubuntu Mono", "Consolas",
                "source-code-pro", monospace;
 }
@@ -20,7 +21,7 @@ body {
 
 button {
   font-size: 14px;
-  font-family: Montserrat;
+  font-family: var(--ui-font);
   font-weight: normal;
   color: black;
   border: 1px solid var(--dark-pink);
@@ -72,7 +73,7 @@ a.p5-logo img {
 }
 
 .error-message .error-message-line {
-  font-family: Montserrat;
+  font-family: var(--ui-font);
   font-weight: normal;
   color: red;
 }
