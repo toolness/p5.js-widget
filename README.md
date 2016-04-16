@@ -38,6 +38,15 @@ of choice. It really makes working on code a lot easier, thanks to
 auto-completion and a bunch of other useful features that make it feel
 like you've got an experienced coder watching your back.
 
+## CSS
+
+We use [PostCSS][] for CSS, largely because we don't need the full
+firepower of a more heavyweight tool like Sass or Less, and because
+neither of those tools do vendor prefixing (to support older browsers).
+
+Currently we use [autoprefixer][] for vendor prefixing and [precss][] for
+variables, mixins, conditionals, and a few other features.
+
 ## Tests
 
 The test suite can be run on the development server at
@@ -50,3 +59,6 @@ http://localhost:8080/test/, or on the command-line with `npm test`.
 [ECMAScript 2015]: https://babeljs.io/docs/learn-es2015/
 [TypeScript Editor Support]: https://github.com/Microsoft/TypeScript/wiki/TypeScript-Editor-Support
 [react-tutorial]: https://github.com/toolness/p5.js-widget/wiki/A-React-Tutorial-for-p5-Programmers
+[PostCSS]: http://postcss.org/
+[autoprefixer]: https://github.com/postcss/autoprefixer
+[precss]: https://github.com/jonathantneal/precss
