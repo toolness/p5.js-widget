@@ -11,6 +11,7 @@ const IFRAME_STYLE = [
 let myScriptEl = getMyScriptEl() as HTMLScriptElement;
 let myBaseURL = getMyBaseURL(myScriptEl.src);
 let autoload = !myScriptEl.hasAttribute('data-manual');
+let nextId = 1;
 
 function getMyBaseURL(url: string) {
   return url.slice(0, -MY_FILENAME.length);
@@ -52,7 +53,10 @@ function replaceScriptWithWidget(el: HTMLScriptElement) {
   let p5version = el.getAttribute('data-p5-version');
   let autoplay = el.hasAttribute('data-autoplay');
   let url;
-  let qsArgs = ['sketch=' + encodeURIComponent(el.textContent)];
+  let qsArgs = [
+    'sketch=' + encodeURIComponent(el.textContent),
+    'id=' + encodeURIComponent(el.getAttribute('data-id'))
+  ];
   let style = IFRAME_STYLE.slice();
 
   if (!isNaN(previewWidth) && previewWidth >= 0) {
@@ -100,19 +104,28 @@ function whenVisible(el: HTMLScriptElement,
   maybeMakeVisible();
 }
 
+function lazilyReplaceScriptWithWidget(el: HTMLScriptElement) {
+  let height = getDataHeight(el);
+
+  el.style.display = 'block';
+  el.style.fontSize = '0';
+  el.style.width = '100%';
+  el.style.minHeight = height + 'px';
+  el.style.background = '#f0f0f0';
+
+  if (!el.hasAttribute('data-id')) {
+    el.setAttribute('data-id', nextId.toString());
+    nextId++;
+  }
+
+  whenVisible(el, replaceScriptWithWidget);
+}
+
 function lazilyReplaceAllScriptsWithWidget() {
   let scripts = document.querySelectorAll("script[type='text/p5']");
 
   [].slice.call(scripts).forEach((el: HTMLScriptElement) => {
-    let height = getDataHeight(el);
-
-    el.style.display = 'block';
-    el.style.fontSize = '0';
-    el.style.width = '100%';
-    el.style.minHeight = height + 'px';
-    el.style.background = '#f0f0f0';
-
-    whenVisible(el, replaceScriptWithWidget);
+    lazilyReplaceScriptWithWidget(el);
   });
 }
 
@@ -131,7 +144,7 @@ if (autoload) {
 window['p5Widget'] = {
   baseURL: myBaseURL,
   url: myBaseURL + MY_FILENAME,
-  replaceScript: replaceScriptWithWidget,
+  replaceScript: lazilyReplaceScriptWithWidget,
   replaceAll: lazilyReplaceAllScriptsWithWidget,
   defaults: defaults
 };
