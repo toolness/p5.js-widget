@@ -20,6 +20,7 @@
 <ol>
   <li><a href="#quick-start">Quick Start</a>
   <li><a href="#autoplay">Autoplay</a>
+  <li><a href="#autosave">Autosave</a>
   <li><a href="#implicit-setup">Implicit <code>setup()</code></a>
   <li><a href="#error-handling">Error Handling</a>
   <li><a href="#resizing">Resizing</a>
@@ -67,6 +68,42 @@ function setup() {
   noLoop();
 }
 </script>
+
+<h2 id="autosave">Autosave</h2>
+
+<p>
+  The widget automatically saves the current editor content in the
+  current <em>page session</em>, and restores it on page load.
+  From the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage">Mozilla Developer Network</a>:
+</p>
+
+<blockquote>
+  A page session lasts for as long as the browser is open and survives
+  over page reloads and restores. Opening a page in a new tab or window
+  will cause a new session to be initiated.
+</blockquote>
+
+<p>
+  This generally means that if a user accidentally navigates
+  away from the page, their work won't be lost if they navigate
+  back to it via their browser's back/forward buttons or
+  its <a href="http://www.computerhope.com/tips/tip16.htm">undo
+  closed tab</a> functionality.
+</p>
+
+<p>
+  Users always have the freedom to revert the widget's code to
+  its initial  state (i.e., the code specified by the embedding page)
+  via the "Revert" button on the toolbar.
+</p>
+
+<p>
+  In some cases, the above behavior may be undesirable. If you
+  want to be able to disable it or otherwise configure it to behave
+  differently, please feel free to
+  <a href="https://github.com/toolness/p5.js-widget/issues/new">file
+  an issue</a>.
+</p>
 
 <h2 id="implicit-setup">Implicit <code>setup()</code></h2>
 
