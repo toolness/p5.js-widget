@@ -82,51 +82,50 @@ a.p5-logo img {
   padding: 8px;
 }
 
-.error-message {
-  .error-message-line {
-    font-family: Montserrat;
-    font-weight: normal;
-    color: red;
-  }
+.error-message .error-message-line {
+  font-family: Montserrat;
+  font-weight: normal;
+  color: red;
 }
 
 .toolbar {
   display: flex;
+}
 
-  button {
-    margin: 10px;
-  }
+.toolbar button {
+  margin: 10px;
 }
 
 .panes {
   flex: 1;
   display: flex;
   border-top: 1px solid var(--dark-pink);
+}
 
-  .editor-holder {
-    flex: 1;
 
-    /* We need this for horizontal scrolling to work properly.
-     * Very weird. */
-    overflow-x: hidden;
-  }
+.panes .editor-holder {
+  flex: 1;
 
-  .preview-holder-wrapper {
-    display: flex;
-    flex-direction: column;
-  }
+  /* We need this for horizontal scrolling to work properly.
+   * Very weird. */
+  overflow-x: hidden;
+}
 
-  .preview-holder {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    border-left: 16px solid var(--very-light-gray);
-  }
+.panes .preview-holder-wrapper {
+  display: flex;
+  flex-direction: column;
+}
 
-  .preview-holder-wrapper iframe {
-    flex: 1;
-    border: none;
-  }
+.panes .preview-holder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-left: 16px solid var(--very-light-gray);
+}
+
+.panes .preview-holder-wrapper iframe {
+  flex: 1;
+  border: none;
 }
 
 .CodeMirror {
