@@ -40,12 +40,13 @@ like you've got an experienced coder watching your back.
 
 ## CSS
 
-We use [PostCSS][] for CSS, largely because we don't need the full
-firepower of a more heavyweight tool like Sass or Less, and because
-neither of those tools do vendor prefixing (to support older browsers).
+Our CSS is intended to be as standards-compliant as possible, while
+leveraging new W3C standards to keep things easy to understand
+and maintain. To this end, we use [PostCSS][] with a minimal number
+of plugins:
 
-Currently we use [autoprefixer][] for vendor prefixing and [precss][] for
-variables, mixins, conditionals, and a few other features.
+* [autoprefixer][] for vendor prefixing (to support older browsers)
+* [postcss-custom-properties][] for [CSS variables][]
 
 ## Tests
 
@@ -61,4 +62,5 @@ http://localhost:8080/test/, or on the command-line with `npm test`.
 [react-tutorial]: https://github.com/toolness/p5.js-widget/wiki/A-React-Tutorial-for-p5-Programmers
 [PostCSS]: http://postcss.org/
 [autoprefixer]: https://github.com/postcss/autoprefixer
-[precss]: https://github.com/jonathantneal/precss
+[postcss-custom-properties]: https://github.com/postcss/postcss-custom-properties
+[CSS variables]: https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables
