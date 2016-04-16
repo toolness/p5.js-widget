@@ -9,6 +9,7 @@ import App from "./app";
 
 let defaultSketchJS = require("raw!./default-sketch.js") as string;
 
+require("../node_modules/codemirror/lib/codemirror.css");
 require("../css/style.css");
 require("../css/p5-widget-codemirror-theme.css");
 
