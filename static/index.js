@@ -12,7 +12,8 @@ function selectText(containerid) {
 }
 
 $(function() {
-  var FORCE_HTTPS = true;
+  var FORCE_HTTPS = false;
+  var FORCE_PROTOCOL_RELATIVE = true;
   var widgetURL = p5Widget.url;
   var simplifyHtml = function(html) {
     // This will convert e.g. data-autoplay="", which is how browsers
@@ -23,6 +24,8 @@ $(function() {
 
   if (FORCE_HTTPS) {
     widgetURL = widgetURL.replace('http:', 'https:');
+  } else if (FORCE_PROTOCOL_RELATIVE) {
+    widgetURL = widgetURL.replace(/^https?:/, '');
   }
 
   $("#script-tag-example").text('<script src="' + widgetURL + '"></script>');
