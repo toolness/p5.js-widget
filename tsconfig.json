@@ -20,6 +20,7 @@
     "lib/autosaver.ts",
     "lib/p5-widget.ts",
     "lib/preview-frame.ts",
+    "lib/preview-frame-interface.ts",
     "lib/falafel.ts",
     "lib/implicit-sketch.ts",
     "lib/loop-inserter.ts",

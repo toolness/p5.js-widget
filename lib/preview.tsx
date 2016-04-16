@@ -4,6 +4,8 @@ import falafel from "./falafel";
 import LoopInserter from "./loop-inserter";
 import makeImplicitSketch from "./implicit-sketch";
 import PureComponent from "./pure-component";
+import { PreviewFrame,
+         PreviewFrameErrorReporter } from "./preview-frame-interface";
 
 const LOOP_CHECK_FUNC_NAME = '__loopCheck';
 

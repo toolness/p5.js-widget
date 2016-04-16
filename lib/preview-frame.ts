@@ -1,3 +1,6 @@
+import { PreviewFrame,
+         PreviewFrameErrorReporter } from "./preview-frame-interface";
+
 require("../css/preview-frame.css");
 
 interface PreviewFrameWindow extends PreviewFrame {
