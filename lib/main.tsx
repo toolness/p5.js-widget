@@ -10,6 +10,7 @@ import App from "./app";
 let defaultSketchJS = require("raw!./default-sketch.js") as string;
 
 require("../css/style.css");
+require("../css/p5-widget-codemirror-theme.css");
 
 function start() {
   let embeddingPageURL = document.referrer;

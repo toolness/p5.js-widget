@@ -7,8 +7,6 @@
  * @import '../node_modules/codemirror/lib/codemirror.css';
  */
 
-@import './p5-widget-codemirror-theme.css';
-
 :root {
   --very-light-gray: #f0f0f0;
   --light-pink: #ffe5ea;
