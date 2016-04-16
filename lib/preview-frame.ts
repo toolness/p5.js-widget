@@ -1,9 +1,8 @@
-import { PreviewFrame,
-         PreviewFrameErrorReporter } from "./preview-frame-interface";
+import * as PreviewFrame from "./preview-frame-interface";
 
 require("../css/preview-frame.css");
 
-interface PreviewFrameWindow extends PreviewFrame {
+interface PreviewFrameWindow extends PreviewFrame.Runner {
   // This is exported by p5 when it's in global mode.
   noLoop: () => void;
 }
@@ -64,7 +63,7 @@ function setBaseURL(url: string) {
 
 function startSketch(sketch: string, p5version: string, maxRunTime: number,
                      loopCheckFuncName: string, baseURL: string,
-                     errorCb: PreviewFrameErrorReporter) {
+                     errorCb: PreviewFrame.ErrorReporter) {
   let sketchScript = document.createElement('script');
   let loopChecker = LoopChecker(sketch, loopCheckFuncName, maxRunTime);
 

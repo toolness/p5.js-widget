@@ -4,8 +4,7 @@ import falafel from "./falafel";
 import LoopInserter from "./loop-inserter";
 import makeImplicitSketch from "./implicit-sketch";
 import PureComponent from "./pure-component";
-import { PreviewFrame,
-         PreviewFrameErrorReporter } from "./preview-frame-interface";
+import * as PreviewFrame from "./preview-frame-interface";
 
 const LOOP_CHECK_FUNC_NAME = '__loopCheck';
 
@@ -15,7 +14,7 @@ interface Props {
   content: string,
   baseSketchURL: string,
   timestamp: number,
-  onError: PreviewFrameErrorReporter
+  onError: PreviewFrame.ErrorReporter
 }
 
 interface State {
@@ -53,7 +52,7 @@ export default class Preview extends PureComponent<Props, State> {
       // Note that this should never be called if we're already unmounted,
       // since that means the iframe will have been removed from the DOM,
       // in which case it shouldn't be emitting events anymore.
-      let frame = iframe.contentWindow as PreviewFrame;
+      let frame = iframe.contentWindow as PreviewFrame.Runner;
       frame.startSketch(content, this.props.p5version, 1000,
                         LOOP_CHECK_FUNC_NAME,
                         this.props.baseSketchURL,

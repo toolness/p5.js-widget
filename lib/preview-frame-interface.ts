@@ -6,15 +6,15 @@
 // to be explicit about importing these interfaces so that the source
 // code is easier to understand.
 
-export interface PreviewFrameErrorReporter {
+export interface ErrorReporter {
   (message: string, line?: number): any
 }
 
 // Eventually we might want the preview frame to exist on a separate
 // origin for security, which means that we'd have to use postMessage()
 // to communicate with it. Thus this interface needs to be asynchronous.
-export interface PreviewFrame extends Window {
+export interface Runner extends Window {
   startSketch: (sketch: string, p5version: string, maxRunTime: number,
                 loopCheckFuncName: string, baseURL: string,
-                errorCb: PreviewFrameErrorReporter) => void
+                errorCb: ErrorReporter) => void
 }
