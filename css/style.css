@@ -9,12 +9,14 @@
 
 @import './p5-widget-codemirror-theme.css';
 
-$veryLightGray: #f0f0f0;
-$lightPink: #ffe5ea;
-$darkPink: #ec245e;
-$blueish: #30b8e6;
-$codeFont: "Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro",
-           monospace;
+:root {
+  --very-light-gray: #f0f0f0;
+  --light-pink: #ffe5ea;
+  --dark-pink: #ec245e;
+  --blueish: #30b8e6;
+  --code-font: "Monaco", "Menlo", "Ubuntu Mono", "Consolas",
+               "source-code-pro", monospace;
+}
 
 html,
 body,
@@ -32,9 +34,9 @@ button {
   font-family: Montserrat;
   font-weight: normal;
   color: black;
-  border: 1px solid $darkPink;
+  border: 1px solid var(--dark-pink);
   background: inherit;
-  color: $darkPink;
+  color: var(--dark-pink);
   border-radius: 2px;
   padding: 2px 12px;
   cursor: pointer;
@@ -42,9 +44,9 @@ button {
 
 button:hover,
 button:hover .open-iconic {
-  fill: $blueish;
-  color: $blueish;
-  border-color: $blueish;
+  fill: var(--blueish);
+  color: var(--blueish);
+  border-color: var(--blueish);
 }
 
 a.p5-logo {
@@ -60,7 +62,7 @@ a.p5-logo img {
 }
 
 .open-iconic {
-  fill: $darkPink;
+  fill: var(--dark-pink);
   height: 16px;
   width: 16px;
   vertical-align: -10%;
@@ -73,10 +75,10 @@ a.p5-logo img {
 }
 
 .status-bar {
-  border-top: 1px solid $darkPink;
-  background: $veryLightGray;
+  border-top: 1px solid var(--dark-pink);
+  background: var(--very-light-gray);
   min-height: 1em;
-  font-family: $codeFont;
+  font-family: var(--code-font);
   padding: 8px;
 }
 
@@ -99,7 +101,7 @@ a.p5-logo img {
 .panes {
   flex: 1;
   display: flex;
-  border-top: 1px solid $darkPink;
+  border-top: 1px solid var(--dark-pink);
 
   .editor-holder {
     flex: 1;
@@ -118,7 +120,7 @@ a.p5-logo img {
     flex: 1;
     display: flex;
     flex-direction: column;
-    border-left: 16px solid $veryLightGray;
+    border-left: 16px solid var(--very-light-gray);
   }
 
   .preview-holder-wrapper iframe {
@@ -128,7 +130,7 @@ a.p5-logo img {
 }
 
 .CodeMirror {
-  font-family: $codeFont;
+  font-family: var(--code-font);
 
   /* If we don't add this, the final characters on some lines aren't
    * visible if the editor has a horizontal scrollbar. Weird. */
@@ -137,9 +139,9 @@ a.p5-logo img {
 
 .CodeMirror-gutters {
   border-right: none;
-  background: $veryLightGray;
+  background: var(--very-light-gray);
 }
 
 .error-line {
-  background: $lightPink;
+  background: var(--light-pink);
 }
