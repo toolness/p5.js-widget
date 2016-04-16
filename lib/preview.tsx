@@ -11,6 +11,7 @@ interface Props {
   p5version: string,
   width: number,
   content: string,
+  baseSketchURL: string,
   timestamp: number,
   onError: PreviewFrameErrorReporter
 }
@@ -52,7 +53,9 @@ export default class Preview extends PureComponent<Props, State> {
       // in which case it shouldn't be emitting events anymore.
       let frame = iframe.contentWindow as PreviewFrame;
       frame.startSketch(content, this.props.p5version, 1000,
-                        LOOP_CHECK_FUNC_NAME, this.props.onError);
+                        LOOP_CHECK_FUNC_NAME,
+                        this.props.baseSketchURL,
+                        this.props.onError);
     });
     this.refs.container.appendChild(iframe);
     this._iframe = iframe;

@@ -52,11 +52,22 @@ function LoopChecker(sketch: string, funcName: string, maxRunTime: number) {
   return self;
 }
 
+function setBaseURL(url: string) {
+  var base = document.createElement('base');
+  base.setAttribute('href', url);
+
+  document.head.appendChild(base);
+}
+
 function startSketch(sketch: string, p5version: string, maxRunTime: number,
-                     loopCheckFuncName: string,
+                     loopCheckFuncName: string, baseURL: string,
                      errorCb: PreviewFrameErrorReporter) {
   let sketchScript = document.createElement('script');
   let loopChecker = LoopChecker(sketch, loopCheckFuncName, maxRunTime);
+
+  if (baseURL) {
+    setBaseURL(baseURL);
+  }
 
   sketchScript.textContent = sketch;
 
