@@ -50,6 +50,7 @@ function replaceScriptWithWidget(el: HTMLScriptElement) {
   let iframe = document.createElement('iframe');
   let height = getDataHeight(el);
   let previewWidth = parseInt(el.getAttribute('data-preview-width'));
+  let baseSketchURL = el.getAttribute('data-base-url');
   let p5version = el.getAttribute('data-p5-version');
   let autoplay = el.hasAttribute('data-autoplay');
   let url;
@@ -61,6 +62,10 @@ function replaceScriptWithWidget(el: HTMLScriptElement) {
 
   if (!isNaN(previewWidth) && previewWidth >= 0) {
     qsArgs.push('previewWidth=' + previewWidth);
+  }
+
+  if (baseSketchURL) {
+    qsArgs.push('baseSketchURL=' + encodeURIComponent(baseSketchURL));
   }
 
   if (p5version) {

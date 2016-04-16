@@ -12,8 +12,10 @@ let defaultSketchJS = require("raw!./default-sketch.js") as string;
 require("../css/style.css");
 
 function start() {
+  let embeddingPageURL = document.referrer;
   let qs = url.parse(window.location.search, true).query;
-  let id = document.referrer + '_' + qs['id'];
+  let id = embeddingPageURL + '_' + qs['id'];
+  let baseSketchURL = qs['baseSketchURL'] || embeddingPageURL;
   let autoplay = (qs['autoplay'] === 'on');
   let initialContent = qs['sketch'] || defaultSketchJS;
   let p5version = qs['p5version'] || defaults.P5_VERSION;
@@ -28,6 +30,7 @@ function start() {
   ReactDOM.render(
     <App initialContent={initialContent}
          autosaver={new SessionStorageAutosaver(id)}
+         baseSketchURL={baseSketchURL}
          p5version={p5version}
          previewWidth={previewWidth}
          autoplay={autoplay} />,

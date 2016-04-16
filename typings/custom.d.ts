@@ -21,6 +21,6 @@ declare interface PreviewFrameErrorReporter {
 // to communicate with it. Thus this interface needs to be asynchronous.
 declare interface PreviewFrame extends Window {
   startSketch: (sketch: string, p5version: string, maxRunTime: number,
-                loopCheckFuncName: string,
+                loopCheckFuncName: string, baseURL: string,
                 errorCb: PreviewFrameErrorReporter) => void
 }
