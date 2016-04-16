@@ -24,6 +24,7 @@
   <li><a href="#error-handling">Error Handling</a>
   <li><a href="#resizing">Resizing</a>
   <li><a href="#specifying-p5-version">Specifying The p5 Version</a>
+  <li><a href="#base-url">Specifying The Base URL</a>
 </ol>
 
 <h2 id="quick-start">Quick Start</h2>
@@ -175,6 +176,31 @@ function setup() {
   A complete list of available versions can be found at
   <a href="https://cdnjs.com/libraries/p5.js">cdnjs.com/libraries/p5.js</a>.
 </p>
+
+<h2 id="base-url">Specifying The Base URL</h2>
+
+<p>
+  By default, the widget will set the base URL of the sketch to
+  the URL of the page embedding the widget. This means that if
+  you're embedding this widget at
+  <code>http://example.org/index.html</code> and have the following
+  code in your sketch:
+</p>
+
+<pre><code class="language-javascript">loadJSON('foo.json');</code></pre>
+
+<p>
+  The actual URL retrieved will be
+  <code>http://example.org/foo.json</code>.
+</p>
+
+<p>
+  If you'd like to override this default, you can specify a
+  custom base URL with the <code>data-base-url</code>
+  attribute like so:
+</p>
+
+<pre><code class="language-markup">&lt;script type="text/p5" data-base-url="http://some-other-website.com/"&gt;</code></pre>
 
 <script src="static/vendor/jquery.js"></script>
 <script src="p5-widget.js" data-manual></script>
