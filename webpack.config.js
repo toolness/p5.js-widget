@@ -30,7 +30,8 @@ var baseConfig = {
     ] : []
   ),
   postcss: function () {
-    return [require('autoprefixer'), require('precss')];
+    return [require('autoprefixer'),
+            require('postcss-custom-properties')];
   }
 };
 
