@@ -7,6 +7,7 @@ const IFRAME_STYLE = [
   'border: 1px solid #ec245e',
   'box-sizing: border-box'
 ];
+const AVOID_MIXED_CONTENT_WARNINGS = true;
 
 let myScriptEl = getMyScriptEl() as HTMLScriptElement;
 let myBaseURL = getMyBaseURL(myScriptEl.src);
@@ -14,7 +15,21 @@ let autoload = !myScriptEl.hasAttribute('data-manual');
 let nextId = 1;
 
 function getMyBaseURL(url: string) {
-  return url.slice(0, -MY_FILENAME.length);
+  let baseURL = url.slice(0, -MY_FILENAME.length);
+
+  if (AVOID_MIXED_CONTENT_WARNINGS) {
+    if (window.location.protocol === 'http:' && /^https:/.test(baseURL)) {
+      // Our script was loaded over HTTPS, but the embedding page is
+      // using HTTP. This is likely to result in mixed content warnings
+      // if e.g. the widget's sketch wants to load resources relative to
+      // the embedding page's URL, so let's just embed the widget over
+      // HTTP instead of HTTPS.
+
+      baseURL = baseURL.replace('https:', 'http:');
+    }
+  }
+
+  return baseURL;
 }
 
 function getMyScriptEl() {
