@@ -4,6 +4,7 @@ const MY_FILENAME = 'p5-widget.js';
 const IFRAME_FILENAME = 'p5-widget.html';
 const IFRAME_STYLE = [
   'width: 100%',
+  'background-color: white',
   'border: 1px solid #ec245e',
   'box-sizing: border-box'
 ];
