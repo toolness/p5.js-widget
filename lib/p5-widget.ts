@@ -61,11 +61,18 @@ function getDataHeight(el: HTMLScriptElement) {
   return height;
 }
 
+function absoluteURL(url: string) {
+  let a = document.createElement('a');
+  a.setAttribute('href', url);
+
+  return a.href;
+}
+
 function replaceScriptWithWidget(el: HTMLScriptElement) {
   let iframe = document.createElement('iframe');
   let height = getDataHeight(el);
   let previewWidth = parseInt(el.getAttribute('data-preview-width'));
-  let baseSketchURL = el.getAttribute('data-base-url');
+  let baseSketchURL = absoluteURL(el.getAttribute('data-base-url'));
   let p5version = el.getAttribute('data-p5-version');
   let autoplay = el.hasAttribute('data-autoplay');
   let url;
