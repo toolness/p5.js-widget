@@ -11,6 +11,12 @@ function selectText(containerid) {
   }
 }
 
+function scrollHashTargetIntoView() {
+  var el = document.getElementById(window.location.hash.slice(1));
+
+  if (el) el.scrollIntoView();
+}
+
 $(function() {
   var FORCE_HTTPS = false;
   var FORCE_PROTOCOL_RELATIVE = true;
@@ -61,4 +67,10 @@ $(function() {
   $("#script-tag-example").click(function() {
     selectText(this.id);
   });
+
+  // Most browsers automatically do this for us, but Firefox doesn't,
+  // so force it ourselves:
+  //
+  // https://github.com/toolness/p5.js-widget/issues/50
+  scrollHashTargetIntoView();
 });
