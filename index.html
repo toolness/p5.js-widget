@@ -26,6 +26,7 @@
   <li><a href="#resizing">Resizing</a>
   <li><a href="#specifying-p5-version">Specifying The p5 Version</a>
   <li><a href="#base-url">Specifying The Base URL</a>
+  <li><a href="#src">Loading From An External File</a>
 </ol>
 
 <h2 id="quick-start">Quick Start</h2>
@@ -233,6 +234,25 @@ function setup() {
 </p>
 
 <pre><code class="language-markup">&lt;script type="text/p5" data-base-url="http://some-other-website.com/"&gt;</code></pre>
+
+<h2 id="src">Loading From An External File</h2>
+
+<p>
+  The <code>src</code> attribute can be used to load the widget's
+  content from an external file instead of specifying it inline. For
+  example, the following will load the widget's content from
+  <code><a href="static/my-example.js">static/my-example.js</a></code>:
+</p>
+
+<script type="text/p5" src="static/my-example.js"></script>
+
+<p>
+  If the URL is relative, then it will be retrieved relative to the URL
+  of the embedding page. If it is absolute, then an attempt to
+  retrieve it will be made; however, like many cross-origin network calls
+  within p5 itself, the file must have <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">Cross-Origin Resource Sharing (CORS)</a>
+  enabled, or it will not be retrieved successfully.
+</p>
 
 <script src="static/vendor/jquery.js"></script>
 <script src="p5-widget.js" data-manual></script>

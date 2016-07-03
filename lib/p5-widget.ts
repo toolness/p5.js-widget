@@ -69,6 +69,31 @@ function absoluteURL(url: string) {
   return a.href;
 }
 
+function getSketch(url: string, cb: (sketch: string) => any) {
+  let error = (msg?: any) => {
+    let lines = ['// p5.js-widget failed to retrieve ' + url + '.'];
+
+    if (msg && typeof(msg) == 'string') {
+      lines.push('// ' + msg);
+    }
+
+    cb(lines.join('\n'));
+  };
+  let req = new XMLHttpRequest();
+  req.open('GET', url);
+
+  req.onload = () => {
+    if (req.status == 200) {
+      cb(req.responseText);
+    } else {
+      error('Server returned HTTP ' + req.status + '.');
+    }
+  };
+
+  req.onerror = error;
+  req.send(null);
+}
+
 function replaceScriptWithWidget(el: HTMLScriptElement) {
   let iframe = document.createElement('iframe');
   let height = getDataHeight(el);
@@ -78,10 +103,18 @@ function replaceScriptWithWidget(el: HTMLScriptElement) {
   let autoplay = el.hasAttribute('data-autoplay');
   let url;
   let qsArgs = [
-    'sketch=' + encodeURIComponent(el.textContent),
     'id=' + encodeURIComponent(el.getAttribute('data-id'))
   ];
   let style = IFRAME_STYLE.slice();
+
+  function makeWidget(sketch: string) {
+    qsArgs.push('sketch=' + encodeURIComponent(sketch));
+    style.push('min-height: ' + height + 'px');
+    url = myBaseURL + IFRAME_FILENAME + '?' + qsArgs.join('&');
+    iframe.setAttribute('src', url);
+    iframe.setAttribute('style', style.join('; '));
+    el.parentNode.replaceChild(iframe, el);
+  }
 
   if (!isNaN(previewWidth) && previewWidth >= 0) {
     qsArgs.push('previewWidth=' + previewWidth);
@@ -99,12 +132,18 @@ function replaceScriptWithWidget(el: HTMLScriptElement) {
     qsArgs.push('autoplay=on');
   }
 
-  style.push('min-height: ' + height + 'px');
-  url = myBaseURL + IFRAME_FILENAME + '?' + qsArgs.join('&');
-  iframe.setAttribute('src', url);
-  iframe.setAttribute('style', style.join('; '));
+  if (el.src && el.textContent && el.textContent.trim()) {
+    return makeWidget([
+      '// Your widget includes both a "src" attribute and inline script',
+      '// content, which makes no sense. Please remove one of them.'
+    ].join('\n'));
+  }
 
-  el.parentNode.replaceChild(iframe, el);
+  if (el.src) {
+    getSketch(el.src, makeWidget);
+  } else {
+    makeWidget(el.textContent);
+  }
 }
 
 function whenVisible(el: HTMLScriptElement,
