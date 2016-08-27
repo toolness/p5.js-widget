@@ -27,6 +27,7 @@
   <li><a href="#specifying-p5-version">Specifying The p5 Version</a>
   <li><a href="#base-url">Specifying The Base URL</a>
   <li><a href="#src">Loading From An External File</a>
+  <li><a href="#wordpress">Using the Widget with Wordpress</a>
 </ol>
 
 <h2 id="quick-start">Quick Start</h2>
@@ -253,6 +254,29 @@ function setup() {
   within p5 itself, the file must have <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS">Cross-Origin Resource Sharing (CORS)</a>
   enabled, or it will not be retrieved successfully.
 </p>
+
+<h2 id="wordpress">Using the Widget with Wordpress</h2>
+
+<p>
+  To embed the widget on a Wordpress page, copy and paste the widget 
+  script into your page in <a href="https://codex.wordpress.org/Writing_Posts#Visual_Versus_Text_Editor">"Text" mode</a> as opposed to "Visual" mode. Then, enclose the widget script in <code>&lt;pre&gt;</code> tags. These <code>&lt;pre&gt;</code> tags instruct the browser to exactly reproduce whatever is inside of them without adding additional formatting. Here's what they look like wrapped around the widget script:
+</p>
+
+<pre><code class="language-markup">
+&lt;pre&gt;
+&lt;script type="text/p5"&gt;
+function setup() {
+  createCanvas(100, 100);
+}
+
+function draw() {
+  background(255, 0, 200);
+}
+
+/* And so on... */
+&lt;/script&gt;
+&lt;/pre&gt;
+</code></pre>
 
 <script src="static/vendor/jquery.js"></script>
 <script src="p5-widget.js" data-manual></script>
