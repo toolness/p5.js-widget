@@ -261,13 +261,12 @@ function setup() {
   To embed the widget on a Wordpress page, copy and paste the widget 
   script into your page in <a href="https://codex.wordpress.org/Writing_Posts#Visual_Versus_Text_Editor">"Text" mode</a> as opposed to "Visual" 
   mode. Then, enclose the widget script in <code>&lt;pre&gt;</code> tags. These 
-  <code>&lt;pre&gt;</code> tags instruct the browser to exactly reproduce whatever 
+  <code>&lt;pre&gt;</code> tags instruct the Wordpress to exactly reproduce whatever
   is inside of them without adding additional formatting. Here's what they look 
   like wrapped around the widget script:
 </p>
 
-<pre><code class="language-markup">
-&lt;pre&gt;
+<pre><code class="language-markup">&lt;pre&gt;
 &lt;script type="text/p5"&gt;
 function setup() {
   createCanvas(100, 100);
