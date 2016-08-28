@@ -5,12 +5,16 @@ require("../css/preview-frame.css");
 interface PreviewFrameWindow extends PreviewFrame.Runner {
   // This is exported by p5 when it's in global mode.
   noLoop: () => void;
+
+  // This is the p5 constructor. An undocumented feature is that
+  // even the first argument is actually *optional*; if omitted,
+  // p5 will initialize itself in global mode.
+  p5: (sketch?: Function, node?: HTMLElement, sync?: boolean) => void;
 }
 
 let global = window as PreviewFrameWindow;
 
-function loadP5(version: string, cb?: () => void) {
-  let url = '//cdnjs.cloudflare.com/ajax/libs/p5.js/' + version + '/p5.js';
+function loadScript(url, cb?: () => void) {
   let script = document.createElement('script');
 
   cb = cb || (() => {});
@@ -19,6 +23,24 @@ function loadP5(version: string, cb?: () => void) {
   script.setAttribute('src', url);
 
   document.body.appendChild(script);
+}
+
+function loadScripts(urls: string[], cb?: () => void) {
+  cb = cb || (() => {});
+
+  let i = 0;
+  let loadNextScript = () => {
+    if (i === urls.length) {
+      return cb();
+    }
+    loadScript(urls[i++], loadNextScript);
+  };
+
+  loadNextScript();
+}
+
+function p5url(version: string) {
+  return `//cdnjs.cloudflare.com/ajax/libs/p5.js/${version}/p5.js`;
 }
 
 function LoopChecker(sketch: string, funcName: string, maxRunTime: number) {
@@ -92,9 +114,14 @@ function startSketch(sketch: string, p5version: string, maxRunTime: number,
     errorCb(message, line);
   });
 
-  document.body.appendChild(sketchScript);
-
-  loadP5(p5version);
+  loadScripts([
+    p5url(p5version),
+  ], () => {
+    document.body.appendChild(sketchScript);
+    if (document.readyState === 'complete') {
+      new global.p5();
+    }
+  });
 }
 
 global.startSketch = startSketch;
