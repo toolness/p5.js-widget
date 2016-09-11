@@ -20,6 +20,9 @@ function loadScript(url, cb?: () => void) {
   cb = cb || (() => {});
 
   script.onload = cb;
+  script.onerror = () => {
+    console.log("Failed to load script: " + url);
+  };
   script.setAttribute('src', url);
 
   document.body.appendChild(script);
