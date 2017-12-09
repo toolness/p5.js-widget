@@ -22,7 +22,7 @@ function start() {
   let initialContent = qs['sketch'] || defaultSketchJS;
   let p5version = qs['p5version'] || defaults.P5_VERSION;
   let previewWidth = parseInt(qs['previewWidth']);
-  let maxRunTime = parseInt(qs['maxRunTime']) || defaults.MAX_RUN_TIME;
+  let maxRunTime = parseInt(qs['maxRunTime'])
   if (isNaN(previewWidth)) {
     previewWidth = defaults.PREVIEW_WIDTH;
   }
