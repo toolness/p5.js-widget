@@ -15,6 +15,7 @@ interface AppProps {
   initialContent: string,
   previewWidth: number,
   p5version: string,
+  maxRunTime: number,
   baseSketchURL: string,
   autosaver?: Autosaver,
   autoplay?: boolean
@@ -142,6 +143,7 @@ export default class App extends PureComponent<AppProps, AppState> {
             ? <Preview content={this.state.previewContent}
                        baseSketchURL={this.props.baseSketchURL}
                        p5version={this.props.p5version}
+                       maxRunTime={this.props.maxRunTime}
                        width={this.props.previewWidth}
                        timestamp={this.state.startPlayTimestamp}
                        onError={this.handlePreviewError} />
