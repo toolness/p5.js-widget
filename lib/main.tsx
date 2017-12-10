@@ -22,9 +22,13 @@ function start() {
   let initialContent = qs['sketch'] || defaultSketchJS;
   let p5version = qs['p5version'] || defaults.P5_VERSION;
   let previewWidth = parseInt(qs['previewWidth']);
-
+  let maxRunTime = parseInt(qs['maxRunTime'])
   if (isNaN(previewWidth)) {
     previewWidth = defaults.PREVIEW_WIDTH;
+  }
+
+  if (isNaN(maxRunTime)) {
+    maxRunTime = defaults.MAX_RUN_TIME;
   }
 
   initialContent = initialContent.replace(/\r\n/g, '\n').trim();
@@ -35,6 +39,7 @@ function start() {
          baseSketchURL={baseSketchURL}
          p5version={p5version}
          previewWidth={previewWidth}
+         maxRunTime={maxRunTime}
          autoplay={autoplay} />,
     document.getElementById('app-holder')
   );

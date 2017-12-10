@@ -14,6 +14,7 @@ interface Props {
   content: string,
   baseSketchURL: string,
   timestamp: number,
+  maxRunTime: number,
   onError: PreviewFrame.ErrorReporter
 }
 
@@ -53,7 +54,7 @@ export default class Preview extends PureComponent<Props, State> {
       // since that means the iframe will have been removed from the DOM,
       // in which case it shouldn't be emitting events anymore.
       let frame = iframe.contentWindow as PreviewFrame.Runner;
-      frame.startSketch(content, this.props.p5version, 1000,
+      frame.startSketch(content, this.props.p5version, this.props.maxRunTime,
                         LOOP_CHECK_FUNC_NAME,
                         this.props.baseSketchURL,
                         this.props.onError);
