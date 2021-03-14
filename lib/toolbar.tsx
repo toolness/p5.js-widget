@@ -43,7 +43,9 @@ export default class Toolbar extends PureComponent<Props, State> {
     return (
       <div className="toolbar">
         <a className="p5-logo" href="http://p5js.org/" target="_blank">
-          <img src="static/img/p5js-beta.svg" alt="p5js.org"/>
+          <svg>
+            <use xlinkHref="static/img/p5js-beta.svg#p5js-beta"/>
+          </svg>
         </a>
         <button onClick={this.props.onPlayClick}>
           <OpenIconicMediaPlay/>
