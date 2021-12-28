@@ -3,6 +3,7 @@ var webpack = require('webpack');
 
 var production = process.env.NODE_ENV === 'production';
 
+/** @type {import('webpack').Configuration} */
 var baseConfig = {
   resolve: {
     // Add `.ts` and `.tsx` as a resolvable extension.
