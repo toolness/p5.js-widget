@@ -41,8 +41,6 @@ export default class Editor extends PureComponent<Props, State> {
     if (this.props.errorLine !== prevProps.errorLine) {
       if (this._errorLineHandle) {
         this._cm.deltaDecorations(this._errorLineHandle, []);
-        // this._cm.removeLineClass(this._errorLineHandle, 'background',
-        //                          'error-line');
         this._errorLineHandle = null;
       }
       if (this.props.errorLine) {
@@ -50,20 +48,16 @@ export default class Editor extends PureComponent<Props, State> {
           {
             range: {
               startColumn: 0,
-              startLineNumber: this.props.errorLine - 1,
+              startLineNumber: this.props.errorLine,
               endColumn: 0,
               endLineNumber: this.props.errorLine,
             },
             options: {
-              linesDecorationsClassName: 'error-line'
+              inlineClassName: 'error-line',
+              isWholeLine: true,
             }
           }
         ]);
-        // this._errorLineHandle = this._cm.addLineClass(
-        //   this.props.errorLine - 1,
-        //   'background',
-        //   'error-line'
-        // );
       }
     }
   }
