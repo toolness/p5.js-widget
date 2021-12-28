@@ -1,9 +1,6 @@
 import React = require("react");
 
-// import CodeMirror = require("codemirror");
 import * as Monaco from 'monaco-editor';
-
-import "codemirror/mode/javascript/javascript.js";
 
 import PureComponent from "./pure-component";
 
