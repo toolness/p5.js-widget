@@ -14,7 +14,7 @@ var baseConfig = {
   module: {
     rules: [
       // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
-      { test: /(?!\.d)\.tsx?$/, use: 'ts-loader' },
+      { test: /\.tsx?$/, use: 'ts-loader' },
       {
         test: /\.css$/,
         use: [

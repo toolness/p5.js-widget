@@ -5,7 +5,6 @@
     "sourceMap": true,
     "jsx": "react",
     "types": [],
-    "allowSyntheticDefaultImports": true,
   },
   "files": [
     "typings/custom.d.ts",
@@ -13,7 +12,6 @@
     "typings/react-addons-pure-render-mixin.d.ts",
     "typings/esprima/esprima.d.ts",
     "typings/chai/chai.d.ts",
-    "typings/raw-loader.d.ts",
     "test/main.tsx",
     "test/test-loop-inserter.tsx",
     "test/test-implicit-sketch.tsx",
