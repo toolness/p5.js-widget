@@ -1,6 +1,7 @@
 import React = require("react");
 
-import CodeMirror = require("codemirror");
+// import CodeMirror = require("codemirror");
+import Monaco = require("monaco-editor");
 
 import "codemirror/mode/javascript/javascript.js";
 
@@ -22,7 +23,7 @@ interface State {
 }
 
 export default class Editor extends PureComponent<Props, State> {
-  _cm: CodeMirror.Editor
+  _cm: Monaco.editor.IStandaloneCodeEditor
   _resizeTimeout: number
   _errorLineHandle: any
 
@@ -33,30 +34,51 @@ export default class Editor extends PureComponent<Props, State> {
     }
     if (this.props.errorLine !== prevProps.errorLine) {
       if (this._errorLineHandle) {
-        this._cm.removeLineClass(this._errorLineHandle, 'background',
-                                 'error-line');
+        this._cm.deltaDecorations(this._errorLineHandle, []);
+        // this._cm.removeLineClass(this._errorLineHandle, 'background',
+        //                          'error-line');
         this._errorLineHandle = null;
       }
       if (this.props.errorLine) {
-        this._errorLineHandle = this._cm.addLineClass(
-          this.props.errorLine - 1,
-          'background',
-          'error-line'
-        );
+        this._errorLineHandle = this._cm.deltaDecorations([], [
+          {
+            range: {
+              startColumn: 0,
+              startLineNumber: this.props.errorLine - 1,
+              endColumn: 0,
+              endLineNumber: this.props.errorLine,
+            },
+            options: {
+              linesDecorationsClassName: 'error-line'
+            }
+          }
+        ]);
+        // this._errorLineHandle = this._cm.addLineClass(
+        //   this.props.errorLine - 1,
+        //   'background',
+        //   'error-line'
+        // );
       }
     }
   }
 
   componentDidMount() {
-    this._cm = CodeMirror(this.refs.container, {
+    this._cm = Monaco.editor.create(this.refs.container, {
       theme: 'p5-widget',
       value: this.props.content,
-      lineNumbers: true,
-      mode: 'javascript'
+      lineNumbers: "on",
     });
-    this._cm.on('change', () => {
+    // this._cm = CodeMirror(this.refs.container, {
+    //   theme: 'p5-widget',
+    //   value: this.props.content,
+    //   lineNumbers: true,
+    //   mode: 'javascript'
+    // });
+    this._cm.onDidChangeModelContent(() => {
       if (this.props.onChange) {
-        let size = this._cm.getDoc().historySize();
+        // let size = this._cm.getDoc().historySize();
+        // TODO:
+        let size = { undo: 0, redo: 0 };
         this.props.onChange(this._cm.getValue(),
                             size.undo > 0, size.redo > 0);
       }
@@ -76,15 +98,17 @@ export default class Editor extends PureComponent<Props, State> {
   }
 
   undo() {
-    this._cm.getDoc().undo();
+    // TODO:
+    // this._cm.executeCommand();
   }
 
   redo() {
-    this._cm.getDoc().redo();
+    // TODO:
+    // this._cm.getDoc().redo();
   }
 
   resizeEditor = () => {
-    let wrapper = this._cm.getWrapperElement();
+    let wrapper = this._cm.getContainerDomNode();
     let oldDisplay = wrapper.style.display;
 
     // We need to get the size of our container when it's
@@ -96,7 +120,8 @@ export default class Editor extends PureComponent<Props, State> {
 
     wrapper.style.display = oldDisplay;
 
-    this._cm.setSize(null, rectHeight);
+    // TODO: may be unnec.
+    // this._cm.resize(null, rectHeight);
   }
 
   // http://stackoverflow.com/a/33826399/2422398
