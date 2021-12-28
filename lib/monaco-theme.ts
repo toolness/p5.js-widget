@@ -14,7 +14,7 @@ const MonacoTheme: Monaco.editor.IStandaloneThemeData = {
     base: 'vs',
     inherit: true,
     rules: [
-        
+        { token: "string", foreground: colors["dark-blueish"] }
     ],
     colors: {
         "editor.foreground": colors["dark-gray"]

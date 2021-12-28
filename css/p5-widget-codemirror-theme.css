@@ -10,6 +10,8 @@
 
 .cm-s-p5-widget span { color: var(--dark-gray); }
 
+.cm-s-p5-widget span.cm-string { color: var(--dark-blueish); }
+.cm-s-p5-widget span.cm-string-2 { color: var(--dark-blueish); }
 /* ^ Ported */
 
 .cm-s-p5-widget span.cm-meta { color: var(--dark-gray); }
@@ -23,8 +25,7 @@
 .cm-s-p5-widget span.cm-property { color: var(--almost-black); }
 .cm-s-p5-widget span.cm-operator { color: var(--light-brown); }
 .cm-s-p5-widget span.cm-comment { color: var(--light-gray); }
-.cm-s-p5-widget span.cm-string { color: var(--dark-blueish); }
-.cm-s-p5-widget span.cm-string-2 { color: var(--dark-blueish); }
+
 
 .cm-s-p5-widget span.cm-error { color: #f00; }
 
