@@ -10,6 +10,8 @@
 
 .cm-s-p5-widget span { color: var(--dark-gray); }
 
+/* ^ Ported */
+
 .cm-s-p5-widget span.cm-meta { color: var(--dark-gray); }
 .cm-s-p5-widget span.cm-keyword { line-height: 1em; color: var(--dark-brown); }
 .cm-s-p5-widget span.cm-atom { color: var(--pinkish); }

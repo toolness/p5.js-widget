@@ -1,8 +1,8 @@
 import React = require("react");
-
 import * as Monaco from 'monaco-editor';
 
 import PureComponent from "./pure-component";
+import MonacoTheme from "./monaco-theme";
 
 // TODO: versions
 const p5dts = require("!!raw-loader!@types/p5/global.d.ts") as string;
@@ -60,11 +60,14 @@ export default class Editor extends PureComponent<Props, State> {
   }
 
   componentDidMount() {
+    Monaco.editor.defineTheme("p5-widget", MonacoTheme);
     this._cm = Monaco.editor.create(this.refs.container, {
       theme: 'p5-widget',
+      fontSize: 16,
+      fontFamily: '"Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace',
       value: this.props.content,
       lineNumbers: "on",
-      language: "javascript"
+      language: "javascript",
     });
 
     Monaco.languages.typescript.javascriptDefaults.addExtraLib(p5dts, p5Uri);
