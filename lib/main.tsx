@@ -1,13 +1,11 @@
 import React = require("react");
 import ReactDOM = require("react-dom");
 
-import url = require("url");
-
 import * as defaults from "./defaults";
 import { SessionStorageAutosaver } from "./autosaver";
 import App from "./app";
 
-let defaultSketchJS = require("raw!./default-sketch.js") as string;
+let defaultSketchJS = require("raw-loader!./default-sketch.js") as string;
 
 require("../node_modules/codemirror/lib/codemirror.css");
 require("../css/style.css");
@@ -15,7 +13,7 @@ require("../css/p5-widget-codemirror-theme.css");
 
 function start() {
   let embeddingPageURL = document.referrer;
-  let qs = url.parse(window.location.search, true).query;
+  let qs = new URL(window.location.search).searchParams;
   let id = embeddingPageURL + '_' + qs['id'];
   let baseSketchURL = qs['baseSketchURL'] || embeddingPageURL;
   let autoplay = (qs['autoplay'] === 'on');

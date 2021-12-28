@@ -1,7 +1,7 @@
 import React = require("react");
 
 // import CodeMirror = require("codemirror");
-import Monaco = require("monaco-editor/esm/vs/editor/editor.api");
+// import Monaco = require("monaco-editor/esm/vs/editor/editor.api");
 
 import "codemirror/mode/javascript/javascript.js";
 
@@ -23,76 +23,83 @@ interface State {
 }
 
 export default class Editor extends PureComponent<Props, State> {
-  _cm: Monaco.editor.IStandaloneCodeEditor
+  // _cm: Monaco.editor.IStandaloneCodeEditor
   _resizeTimeout: number
   _errorLineHandle: any
 
   componentDidUpdate(prevProps: Props) {
-    if (this.props.content !== prevProps.content &&
-        this.props.content !== this._cm.getValue()) {
-      this._cm.setValue(this.props.content);
-    }
-    if (this.props.errorLine !== prevProps.errorLine) {
-      if (this._errorLineHandle) {
-        this._cm.deltaDecorations(this._errorLineHandle, []);
-        // this._cm.removeLineClass(this._errorLineHandle, 'background',
-        //                          'error-line');
-        this._errorLineHandle = null;
-      }
-      if (this.props.errorLine) {
-        this._errorLineHandle = this._cm.deltaDecorations([], [
-          {
-            range: {
-              startColumn: 0,
-              startLineNumber: this.props.errorLine - 1,
-              endColumn: 0,
-              endLineNumber: this.props.errorLine,
-            },
-            options: {
-              linesDecorationsClassName: 'error-line'
-            }
-          }
-        ]);
-        // this._errorLineHandle = this._cm.addLineClass(
-        //   this.props.errorLine - 1,
-        //   'background',
-        //   'error-line'
-        // );
-      }
-    }
+    // if (this.props.content !== prevProps.content &&
+    //     this.props.content !== this._cm.getValue()) {
+    //   this._cm.setValue(this.props.content);
+    // }
+    // if (this.props.errorLine !== prevProps.errorLine) {
+    //   if (this._errorLineHandle) {
+    //     this._cm.deltaDecorations(this._errorLineHandle, []);
+    //     // this._cm.removeLineClass(this._errorLineHandle, 'background',
+    //     //                          'error-line');
+    //     this._errorLineHandle = null;
+    //   }
+    //   if (this.props.errorLine) {
+    //     this._errorLineHandle = this._cm.deltaDecorations([], [
+    //       {
+    //         range: {
+    //           startColumn: 0,
+    //           startLineNumber: this.props.errorLine - 1,
+    //           endColumn: 0,
+    //           endLineNumber: this.props.errorLine,
+    //         },
+    //         options: {
+    //           linesDecorationsClassName: 'error-line'
+    //         }
+    //       }
+    //     ]);
+    //     // this._errorLineHandle = this._cm.addLineClass(
+    //     //   this.props.errorLine - 1,
+    //     //   'background',
+    //     //   'error-line'
+    //     // );
+    //   }
+    // }
   }
 
   componentDidMount() {
-    this._cm = Monaco.editor.create(this.refs.container, {
-      theme: 'p5-widget',
-      value: this.props.content,
-      lineNumbers: "on",
-    });
-    // this._cm = CodeMirror(this.refs.container, {
+    // this._cm = Monaco.editor.create(this.refs.container, {
     //   theme: 'p5-widget',
     //   value: this.props.content,
-    //   lineNumbers: true,
-    //   mode: 'javascript'
+    //   lineNumbers: "on",
     // });
-    this._cm.onDidChangeModelContent(() => {
-      if (this.props.onChange) {
-        // let size = this._cm.getDoc().historySize();
-        // TODO:
-        let size = { undo: 0, redo: 0 };
-        this.props.onChange(this._cm.getValue(),
-                            size.undo > 0, size.redo > 0);
-      }
-    });
-    this.resizeEditor();
-    this._resizeTimeout = setTimeout(this.resizeEditor,
-                                     INITIAL_RESIZE_DELAY_MS);
-    window.addEventListener('resize', this.resizeEditor, false);
+    // // this._cm = CodeMirror(this.refs.container, {
+    // //   theme: 'p5-widget',
+    // //   value: this.props.content,
+    // //   lineNumbers: true,
+    // //   mode: 'javascript'
+    // // });
+    // this._cm.onDidChangeModelContent(() => {
+    //   if (this.props.onChange) {
+    //     // let size = this._cm.getDoc().historySize();
+    //     // TODO:
+    //     let size = { undo: 0, redo: 0 };
+    //     this.props.onChange(this._cm.getValue(),
+    //                         size.undo > 0, size.redo > 0);
+    //   }
+    // });
+
+    // CodeMirror.registerHelper("hint", "auto", () => {
+    //   return [
+    //     "test",
+    //     "buddy"
+    //   ];
+    // });
+    // this.resizeEditor();
+    // this._resizeTimeout = setTimeout(this.resizeEditor,
+    //                                  INITIAL_RESIZE_DELAY_MS);
+    // window.addEventListener('resize', this.resizeEditor, false);
   }
 
   componentWillUnmount() {
     // CodeMirror instances have no remove/destroy methods, so we
     // don't need to do anything: http://stackoverflow.com/a/18890324/2422398
-    this._cm = null;
+    // this._cm = null;
     clearTimeout(this._resizeTimeout);
     window.removeEventListener('resize', this.resizeEditor, false);
   }
@@ -108,20 +115,20 @@ export default class Editor extends PureComponent<Props, State> {
   }
 
   resizeEditor = () => {
-    let wrapper = this._cm.getContainerDomNode();
-    let oldDisplay = wrapper.style.display;
+    // // let wrapper = this._cm.getContainerDomNode();
+    // let oldDisplay = wrapper.style.display;
 
-    // We need to get the size of our container when it's
-    // "uncorrupted" by the height of our codemirror widget, so
-    // temporarily hide the widget.
-    wrapper.style.display = 'none';
+    // // We need to get the size of our container when it's
+    // // "uncorrupted" by the height of our codemirror widget, so
+    // // temporarily hide the widget.
+    // wrapper.style.display = 'none';
 
-    let rectHeight = this.refs.container.getBoundingClientRect().height;
+    // let rectHeight = this.refs.container.getBoundingClientRect().height;
 
-    wrapper.style.display = oldDisplay;
+    // wrapper.style.display = oldDisplay;
 
-    // TODO: may be unnec.
-    // this._cm.resize(null, rectHeight);
+    // // TODO: may be unnec.
+    // // this._cm.resize(null, rectHeight);
   }
 
   // http://stackoverflow.com/a/33826399/2422398

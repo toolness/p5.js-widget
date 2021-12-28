@@ -5,18 +5,35 @@ var production = process.env.NODE_ENV === 'production';
 
 /** @type {import('webpack').Configuration} */
 var baseConfig = {
+  mode: (production) ? 'production' : 'development',
   resolve: {
     // Add `.ts` and `.tsx` as a resolvable extension.
     extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
   },
   devtool: 'source-map',
   module: {
-    loaders: [
+    rules: [
       // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
-      { test: /\.tsx?$/, loader: 'ts-loader' },
+      { test: /\.tsx?$/, use: 'ts-loader' },
       {
         test: /\.css$/,
-        loaders: ["style", "css?sourceMap", "postcss?sourceMap"]
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true
+            }
+          },
+          { 
+            loader: "postcss-loader?sourceMap",
+            options: {
+              postcssOptions: function () {
+                return [require('autoprefixer'),
+                        require('postcss-custom-properties')];
+              }
+            }
+          }]
       }
     ]
   },
@@ -30,10 +47,6 @@ var baseConfig = {
       })
     ] : []
   ),
-  postcss: function () {
-    return [require('autoprefixer'),
-            require('postcss-custom-properties')];
-  }
 };
 
 var configurations = function() {
