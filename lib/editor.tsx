@@ -1,7 +1,7 @@
 import React = require("react");
 
 // import CodeMirror = require("codemirror");
-import Monaco = require("monaco-editor");
+import * as Monaco from "monaco-editor/esm/vs/editor/editor.api";
 
 import "codemirror/mode/javascript/javascript.js";
 

@@ -23,6 +23,7 @@
     "webpack": "^1.12.14"
   },
   "devDependencies": {
+    "@types/react": "^17.0.38",
     "chai": "^3.5.0",
     "mocha": "^2.4.5",
     "mocha-phantomjs": "^4.0.2",
