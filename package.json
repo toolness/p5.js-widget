@@ -4,6 +4,7 @@
   "description": "Embeddable widget for p5.js sketches",
   "main": "bundle.js",
   "dependencies": {
+    "@types/p5": "^1.3.2",
     "autoprefixer": "^6.3.6",
     "codemirror": "^5.13.4",
     "css-loader": "^6.5.1",

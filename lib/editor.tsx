@@ -7,6 +7,12 @@ import "codemirror/mode/javascript/javascript.js";
 
 import PureComponent from "./pure-component";
 
+// TODO: versions
+const p5dts = require("!!raw-loader!@types/p5/global.d.ts") as string;
+const p5Uri = "ts:p5.d.ts";
+// const p5domdts = require("raw-loader!@types/p5/lib/addons/p5.dom.d.ts") as string;
+// const p5sounddts = require("raw-loader!@types/p5/lib/addons/p5.sound.d.ts") as string;
+
 // It seems like CodeMirror behaves oddly with a flexbox layout, so
 // we will manually size it. However, Chrome seems to have a bug
 // whereby we need to wait a bit before resizing it after the
@@ -69,6 +75,13 @@ export default class Editor extends PureComponent<Props, State> {
       lineNumbers: "on",
       language: "javascript"
     });
+
+    Monaco.languages.typescript.javascriptDefaults.addExtraLib(p5dts, p5Uri);
+    // When resolving definitions and references, the editor will try to use created models.
+    // Creating a model for the library allows "peek definition/references" commands to work with the library.
+    Monaco.editor.createModel(p5dts, 'typescript', Monaco.Uri.parse(p5Uri));
+
+
     this._cm.onDidChangeModelContent(() => {
       if (this.props.onChange) {
         // let size = this._cm.getDoc().historySize();
@@ -77,13 +90,6 @@ export default class Editor extends PureComponent<Props, State> {
         this.props.onChange(this._cm.getValue(),
                             size.undo > 0, size.redo > 0);
       }
-    });
-
-    CodeMirror.registerHelper("hint", "auto", () => {
-      return [
-        "test",
-        "buddy"
-      ];
     });
     this.resizeEditor();
     this._resizeTimeout = setTimeout(this.resizeEditor,
