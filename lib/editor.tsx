@@ -67,13 +67,8 @@ export default class Editor extends PureComponent<Props, State> {
       theme: 'p5-widget',
       value: this.props.content,
       lineNumbers: "on",
+      language: "javascript"
     });
-    // this._cm = CodeMirror(this.refs.container, {
-    //   theme: 'p5-widget',
-    //   value: this.props.content,
-    //   lineNumbers: true,
-    //   mode: 'javascript'
-    // });
     this._cm.onDidChangeModelContent(() => {
       if (this.props.onChange) {
         // let size = this._cm.getDoc().historySize();
