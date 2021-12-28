@@ -9,6 +9,7 @@
     "css-loader": "^6.5.1",
     "esprima": "^2.7.2",
     "monaco-editor": "^0.31.1",
+    "monaco-editor-webpack-plugin": "^7.0.1",
     "postcss": "^8.4.5",
     "postcss-custom-properties": "^5.0.0",
     "postcss-loader": "^6.2.1",

@@ -38,6 +38,7 @@ var baseConfig = {
     ]
   },
   plugins: [
+    new (require('monaco-editor-webpack-plugin'))()
   ].concat(
     production ? [
       new webpack.optimize.UglifyJsPlugin({
@@ -60,6 +61,14 @@ module.exports = configurations({
     'main': './lib/main.tsx',
     'preview-frame': './lib/preview-frame.ts',
     'tests': './test/main.tsx'
+  },
+  devServer: {
+    // historyApiFallback: {
+    //   index: "../index.html"
+    // },
+    static: {
+      directory: "static/"
+    },
   },
   output: {
     filename: '[name].bundle.js'

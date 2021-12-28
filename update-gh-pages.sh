@@ -19,6 +19,7 @@ cd ..
 
 echo "Copying files in working dir to ./website/."
 
+# TODO: fix copy of main files.
 cp -r static/ website/static/
 cp \
   p5-widget.html p5-widget.js p5-widget.js.map \
