@@ -8,9 +8,10 @@ const colors = {
     "light-brown": "#a67f59",
     "pinkish": "#DC3787", /* not p5 pink, but related */
     "dark-blueish": "#00A1D3",
+    "very-light-gray": "#f0f0f0",
 }
 
-// See the official themes for inspiration:
+// See the official themes for inspiration, but note that they use a different tokenizer:
 //
 // https://github.com/Microsoft/vscode/blob/main/src/vs/editor/standalone/common/themes.ts#L13
 const MonacoTheme: Monaco.editor.IStandaloneThemeData = {
@@ -29,7 +30,12 @@ const MonacoTheme: Monaco.editor.IStandaloneThemeData = {
         { token: "string", foreground: colors["dark-blueish"] }
     ],
     colors: {
-        "editor.foreground": colors["dark-gray"]
+        "editor.foreground": colors["dark-gray"],
+        "editorLineNumber.foreground": colors['light-gray'],
+
+        // Took me a long time to find:
+        // https://stackoverflow.com/questions/65659354/what-is-the-name-of-configuration-to-change-the-background-of-line-number-vscode
+        "editorGutter.background": colors['very-light-gray'],
     }
 };
 export default MonacoTheme;

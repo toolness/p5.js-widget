@@ -65,10 +65,16 @@ export default class Editor extends PureComponent<Props, State> {
       theme: 'p5-widget',
       fontSize: 16,
       fontFamily: '"Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace',
+      lineNumbersMinChars: 2,
       value: this.props.content,
       lineNumbers: "on",
       language: "javascript",
       automaticLayout: true,
+      fixedOverflowWidgets: true,
+      folding: false,
+      guides: {
+        indentation: false,
+      }
     });
 
     Monaco.languages.typescript.javascriptDefaults.addExtraLib(p5dts, p5Uri);
