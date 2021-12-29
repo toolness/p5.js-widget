@@ -3,6 +3,7 @@ import * as Monaco from 'monaco-editor';
 
 import PureComponent from "./pure-component";
 import MonacoTheme from "./monaco-theme";
+import UndoRedoHelper from "./undo-redo-helper";
 
 // TODO: versions
 const p5dts = require("!!raw-loader!@types/p5/global.d.ts") as string;
@@ -104,11 +105,12 @@ export default class Editor extends PureComponent<Props, State> {
 
     this._cm.onDidChangeModelContent(() => {
       if (this.props.onChange) {
-        // let size = this._cm.getDoc().historySize();
-        // TODO:
-        let size = { undo: 0, redo: 0 };
-        this.props.onChange(this._cm.getValue(),
-                            size.undo > 0, size.redo > 0);
+        // TODO: extract to helper?
+        const helper = new UndoRedoHelper(this._cm.getModel());
+        this.props.onChange(
+          this._cm.getValue(),
+          helper.canUndo(),
+          helper.canRedo());
       }
     });
     this.resizeEditor();
@@ -128,6 +130,8 @@ export default class Editor extends PureComponent<Props, State> {
   undo() {
     // TODO:
     // this._cm.executeCommand();
+    // console.log(this._cm.saveViewState());
+    // this._cm.getModel().uri
   }
 
   redo() {
