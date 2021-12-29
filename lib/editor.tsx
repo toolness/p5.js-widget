@@ -50,7 +50,7 @@ export default class Editor extends PureComponent<Props, State> {
               endLineNumber: this.props.errorLine,
             },
             options: {
-              inlineClassName: 'error-line',
+              className: 'error-line',
               isWholeLine: true,
             }
           }
@@ -68,6 +68,7 @@ export default class Editor extends PureComponent<Props, State> {
       value: this.props.content,
       lineNumbers: "on",
       language: "javascript",
+      automaticLayout: true,
     });
 
     Monaco.languages.typescript.javascriptDefaults.addExtraLib(p5dts, p5Uri);
