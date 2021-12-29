@@ -62,19 +62,26 @@ export default class Editor extends PureComponent<Props, State> {
   componentDidMount() {
     Monaco.editor.defineTheme("p5-widget", MonacoTheme);
     this._cm = Monaco.editor.create(this.refs.container, {
+      value: this.props.content,
+      language: "javascript",
+
+      // Style:
       theme: 'p5-widget',
       fontSize: 16,
       fontFamily: '"Monaco", "Menlo", "Ubuntu Mono", "Consolas", "source-code-pro", monospace',
       lineNumbersMinChars: 2,
-      value: this.props.content,
       lineNumbers: "on",
-      language: "javascript",
-      automaticLayout: true,
-      fixedOverflowWidgets: true,
       folding: false,
+      minimap: {
+        enabled: false,
+      },
       guides: {
         indentation: false,
-      }
+      },
+
+      // Unclear what we need to do here.
+      automaticLayout: true,
+      fixedOverflowWidgets: true,
     });
 
     Monaco.languages.typescript.javascriptDefaults.addExtraLib(p5dts, p5Uri);
@@ -82,6 +89,18 @@ export default class Editor extends PureComponent<Props, State> {
     // Creating a model for the library allows "peek definition/references" commands to work with the library.
     Monaco.editor.createModel(p5dts, 'typescript', Monaco.Uri.parse(p5Uri));
 
+    // This could adapt to the browser---detect what features are supported and
+    // add those libraries to the `lib`s, beyond just ES2015, which
+    // https://www.typescriptlang.org/tsconfig#target recommends for browsers in
+    // general.
+    //
+    // We get errors like `Unhandled Promise Rejection: Error: Could not find
+    // source file: 'inmemory://model/1'.` if we don't Object.assign here.
+    const currentOptions = Monaco.languages.typescript.javascriptDefaults.getCompilerOptions();
+    Monaco.languages.typescript.javascriptDefaults.setCompilerOptions(Object.assign({
+      lib: ["dom", "es2015"],
+      module: Monaco.languages.typescript.ModuleKind.None,
+    }, currentOptions));
 
     this._cm.onDidChangeModelContent(() => {
       if (this.props.onChange) {
@@ -117,20 +136,23 @@ export default class Editor extends PureComponent<Props, State> {
   }
 
   resizeEditor = () => {
-    let wrapper = this._cm.getContainerDomNode();
-    let oldDisplay = wrapper.style.display;
+    // TODO: we can use auto-layout, but it looks like the context menu gets
+    // clipped for small iframes.
 
-    // We need to get the size of our container when it's
-    // "uncorrupted" by the height of our codemirror widget, so
-    // temporarily hide the widget.
-    wrapper.style.display = 'none';
+    // let wrapper = this._cm.getContainerDomNode();
+    // let oldDisplay = wrapper.style.display;
 
-    let rectHeight = this.refs.container.getBoundingClientRect().height;
+    // // We need to get the size of our container when it's
+    // // "uncorrupted" by the height of our codemirror widget, so
+    // // temporarily hide the widget.
+    // wrapper.style.display = 'none';
 
-    wrapper.style.display = oldDisplay;
+    // let rectHeight = this.refs.container.getBoundingClientRect().height;
+    // console.log(rectHeight);
 
-    // TODO: may be unnec.
-    // this._cm.resize(null, rectHeight);
+    // wrapper.style.display = oldDisplay;
+
+    // this._cm.layout();
   }
 
   // http://stackoverflow.com/a/33826399/2422398
