@@ -8,7 +8,6 @@
   },
   "files": [
     "typings/custom.d.ts",
-    "typings/codemirror.d.ts",
     "typings/react-addons-pure-render-mixin.d.ts",
     "typings/esprima/esprima.d.ts",
     "typings/chai/chai.d.ts",
