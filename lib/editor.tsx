@@ -106,7 +106,7 @@ export default class Editor extends PureComponent<Props, State> {
     this._cm.onDidChangeModelContent(() => {
       if (this.props.onChange) {
         // TODO: extract to helper?
-        const helper = new UndoRedoHelper(this._cm.getModel());
+        const helper = new UndoRedoHelper(this._cm);
         this.props.onChange(
           this._cm.getValue(),
           helper.canUndo(),
@@ -128,15 +128,13 @@ export default class Editor extends PureComponent<Props, State> {
   }
 
   undo() {
-    // TODO:
-    // this._cm.executeCommand();
-    // console.log(this._cm.saveViewState());
-    // this._cm.getModel().uri
+    const helper = new UndoRedoHelper(this._cm);
+    helper.undo();
   }
 
   redo() {
-    // TODO:
-    // this._cm.getDoc().redo();
+    const helper = new UndoRedoHelper(this._cm);
+    helper.redo();
   }
 
   resizeEditor = () => {

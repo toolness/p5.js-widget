@@ -34,19 +34,28 @@ namespace MonacoInternals {
 }
 
 export default class UndoRedoHelper {
-    private readonly _model: Monaco.editor.ITextModel;
+    private readonly _editor: Monaco.editor.IStandaloneCodeEditor;
     
-    constructor(model: Monaco.editor.ITextModel) {
-        this._model = model;
+    constructor(editor: Monaco.editor.IStandaloneCodeEditor) {
+        this._editor = editor;
     }
     
     public canUndo(): boolean {
-        const internalModel = (this._model as unknown as MonacoInternals.ITextModelInternal);
-        return internalModel._commandManager._undoRedoService.canUndo(this._model.uri);
+        const internalModel = (this._editor.getModel() as unknown as MonacoInternals.ITextModelInternal);
+        return internalModel._commandManager._undoRedoService.canUndo(this._editor.getModel().uri);
     }
 
     public canRedo(): boolean {
-        const internalModel = (this._model as unknown as MonacoInternals.ITextModelInternal);
-        return internalModel._commandManager._undoRedoService.canRedo(this._model.uri);
+        const internalModel = (this._editor.getModel() as unknown as MonacoInternals.ITextModelInternal);
+        return internalModel._commandManager._undoRedoService.canRedo(this._editor.getModel().uri);
+    }
+
+    public undo(): void {
+        // https://github.com/microsoft/monaco-editor/issues/451
+        this._editor.trigger("p5_button", "undo", null);
+    }
+
+    public redo(): void {
+        this._editor.trigger("p5_button", "redo", null);
     }
 }
