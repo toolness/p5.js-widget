@@ -2,10 +2,15 @@ import * as Monaco from 'monaco-editor';
 
 namespace MonacoInternals {
     /**
-    * Expose some internal parts of ITextModel.
+    * In order to look at the undo/redo stack, we need to expose some internal
+    * parts of ITextModel.
+    *
+    * This is potentially brittle, but it is probably a fairly robust way of
+    * getting the state. To add robustness, mark all these as potentially
+    * undefined, so callers have to check existence first.
     */
     export interface ITextModelInternal {
-        readonly _commandManager: ICommandManager;
+        readonly _commandManager: Partial<ICommandManager>;
     }
     
     /**
@@ -17,7 +22,7 @@ namespace MonacoInternals {
         * 
         * https://github.com/microsoft/vscode/blob/49efe65bc3769cff56182bfd5ce881fa4654ca6a/src/vs/platform/undoRedo/common/undoRedo.ts#L113
         */
-        readonly _undoRedoService: {
+        readonly _undoRedoService: Partial<{
             /**
             * Can you undo?
             * @param resource model URI
@@ -29,7 +34,7 @@ namespace MonacoInternals {
             * @param resource model URI
             */
             canRedo(resource: unknown /* Monaco.Uri | UndoRedoSource */): boolean;
-        }
+        }>
     }
 }
 
@@ -41,13 +46,21 @@ export default class UndoRedoHelper {
     }
     
     public canUndo(): boolean {
-        const internalModel = (this._editor.getModel() as unknown as MonacoInternals.ITextModelInternal);
-        return internalModel._commandManager._undoRedoService.canUndo(this._editor.getModel().uri);
+        const model = this._editor.getModel();
+        if (!model) {
+            return false;
+        }
+        const internalModel = (model as unknown as MonacoInternals.ITextModelInternal);
+        return internalModel._commandManager?._undoRedoService?.canUndo?.(model.uri) ?? false;
     }
 
     public canRedo(): boolean {
-        const internalModel = (this._editor.getModel() as unknown as MonacoInternals.ITextModelInternal);
-        return internalModel._commandManager._undoRedoService.canRedo(this._editor.getModel().uri);
+        const model = this._editor.getModel();
+        if (!model) {
+            return false;
+        }
+        const internalModel = (model as unknown as MonacoInternals.ITextModelInternal);
+        return internalModel._commandManager?._undoRedoService?.canRedo?.(model.uri) ?? false;
     }
 
     public undo(): void {
