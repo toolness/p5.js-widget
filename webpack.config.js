@@ -41,7 +41,12 @@ var baseConfig = {
     ]
   },
   plugins: [
-    new (require('monaco-editor-webpack-plugin'))()
+    new (require('monaco-editor-webpack-plugin'))({
+      languages: [
+        "typescript",
+        "javascript"
+      ],
+    })
   ],
 };
 
