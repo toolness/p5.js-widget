@@ -27,22 +27,22 @@ interface State {
 }
 
 export default class Editor extends PureComponent<Props, State> {
-  _cm: Monaco.editor.IStandaloneCodeEditor
+  _ed: Monaco.editor.IStandaloneCodeEditor
   _resizeTimeout: number
   _errorLineHandle: any
 
   componentDidUpdate(prevProps: Props) {
     if (this.props.content !== prevProps.content &&
-        this.props.content !== this._cm.getValue()) {
-      this._cm.setValue(this.props.content);
+        this.props.content !== this._ed.getValue()) {
+      this._ed.setValue(this.props.content);
     }
     if (this.props.errorLine !== prevProps.errorLine) {
       if (this._errorLineHandle) {
-        this._cm.deltaDecorations(this._errorLineHandle, []);
+        this._ed.deltaDecorations(this._errorLineHandle, []);
         this._errorLineHandle = null;
       }
       if (this.props.errorLine) {
-        this._errorLineHandle = this._cm.deltaDecorations([], [
+        this._errorLineHandle = this._ed.deltaDecorations([], [
           {
             range: {
               startColumn: 0,
@@ -62,7 +62,7 @@ export default class Editor extends PureComponent<Props, State> {
 
   componentDidMount() {
     Monaco.editor.defineTheme("p5-widget", MonacoTheme);
-    this._cm = Monaco.editor.create(this.refs.container, {
+    this._ed = Monaco.editor.create(this.refs.container, {
       value: this.props.content,
       language: "javascript",
 
@@ -103,12 +103,12 @@ export default class Editor extends PureComponent<Props, State> {
       module: Monaco.languages.typescript.ModuleKind.None,
     }, currentOptions));
 
-    this._cm.onDidChangeModelContent(() => {
+    this._ed.onDidChangeModelContent(() => {
       if (this.props.onChange) {
         // TODO: extract to helper?
-        const helper = new UndoRedoHelper(this._cm);
+        const helper = new UndoRedoHelper(this._ed);
         this.props.onChange(
-          this._cm.getValue(),
+          this._ed.getValue(),
           helper.canUndo(),
           helper.canRedo());
       }
@@ -122,18 +122,18 @@ export default class Editor extends PureComponent<Props, State> {
   componentWillUnmount() {
     // CodeMirror instances have no remove/destroy methods, so we
     // don't need to do anything: http://stackoverflow.com/a/18890324/2422398
-    this._cm = null;
+    this._ed = null;
     clearTimeout(this._resizeTimeout);
     window.removeEventListener('resize', this.resizeEditor, false);
   }
 
   undo() {
-    const helper = new UndoRedoHelper(this._cm);
+    const helper = new UndoRedoHelper(this._ed);
     helper.undo();
   }
 
   redo() {
-    const helper = new UndoRedoHelper(this._cm);
+    const helper = new UndoRedoHelper(this._ed);
     helper.redo();
   }
 
