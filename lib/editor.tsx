@@ -66,6 +66,9 @@ export default class Editor extends PureComponent<Props, State> {
       value: this.props.content,
       language: "javascript",
 
+      // Ensure we don't have scrolling by default.
+      scrollBeyondLastLine: false,
+
       // Style:
       theme: 'p5-widget',
       fontSize: 16,
