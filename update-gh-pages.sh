@@ -12,18 +12,20 @@ echo "Cloning website into ./website/."
 rm -rf website
 git clone . website -b gh-pages -o parentdir
 cd website
+# TODO: custom upstream
 git remote add upstream https://github.com/toolness/p5.js-widget.git
 git pull upstream gh-pages
-git rm -rf static/
+# TODO: deletion?
+# git rm -rf static/
 cd ..
 
 echo "Copying files in working dir to ./website/."
 
-# TODO: fix copy of main files.
-cp -r static/ website/static/
+cp -r static/ website/
 cp \
-  p5-widget.html p5-widget.js p5-widget.js.map \
-  preview-frame.html index.html \
+  # p5-widget.html \
+  p5-widget.js p5-widget.js.map \
+  # preview-frame.html index.html \
   main.bundle.js* \
   preview-frame.bundle.js* \
   website/
@@ -32,9 +34,12 @@ echo "Staging new/changed files."
 
 cd website
 git add \
+  img/ vendor/ \
+  index.css index.js \
+  my-exaple.js \
   main.bundle.js main.bundle.js.map \
   preview-frame.bundle.js preview-frame.bundle.js.map \
-  static/ p5-widget.html p5-widget.js p5-widget.js.map \
+  p5-widget.html p5-widget.js p5-widget.js.map \
   preview-frame.html index.html
 
 #echo "Done. Run 'git diff --staged' to review changes."
