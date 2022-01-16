@@ -6,7 +6,10 @@
   --light-brown: #a67f59;
   --pinkish: #DC3787; /* not p5 pink, but related */
   --dark-blueish: #00A1D3;
-  --pink: #ec245e;
+
+  --dark-pink: #ec245e;
+  --blueish: #30b8e6;
+  --ui-font: Montserrat, sans-serif;
 }
 
 html {
@@ -43,15 +46,19 @@ a {
 
   margin: 10px auto;
   padding: 1rem;
-  border: 1px solid var(--pink);
+  border: 1px solid var(--dark-pink);
+  border-radius: 2px;
+
   background-color: white;
   color: inherit;
 
+  font-family: Montserrat, sans-serif;
   text-decoration: none;
 }
 
   .button:hover,
   .button:focus {
-    background-color: var(--pink);
+    background-color: var(--blueish);
+    border-color: var(--blueish);
     color: white;
   }
