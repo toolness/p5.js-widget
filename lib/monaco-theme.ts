@@ -1,6 +1,7 @@
 import * as Monaco from 'monaco-editor';
 
 const colors = {
+    "very-light-gray": "#f0f0f0",
     "light-gray": "#A0A0A0",
     "dark-gray": "#666666",
     "almost-black": "#222222",
@@ -8,7 +9,7 @@ const colors = {
     "light-brown": "#a67f59",
     "pinkish": "#DC3787", /* not p5 pink, but related */
     "dark-blueish": "#00A1D3",
-    "very-light-gray": "#f0f0f0",
+    "white": "#ffffff"
 }
 
 // See the official themes for inspiration, but note that they use a different tokenizer:
@@ -36,6 +37,11 @@ const MonacoTheme: Monaco.editor.IStandaloneThemeData = {
         // Took me a long time to find:
         // https://stackoverflow.com/questions/65659354/what-is-the-name-of-configuration-to-change-the-background-of-line-number-vscode
         "editorGutter.background": colors['very-light-gray'],
+
+        "editorBracketMatch.background": colors['white'],
+        "editorBracketMatch.border": colors['dark-gray'],
+
+        "errorForeground": "#ff0000",
     }
 };
 export default MonacoTheme;

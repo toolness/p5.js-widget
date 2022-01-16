@@ -28,14 +28,15 @@
 
 .cm-s-p5-widget span.cm-error { color: #f00; }
 
-.cm-s-p5-widget .CodeMirror-activeline-background { background: #e8f2ff; }
-.cm-s-p5-widget .CodeMirror-matchingbracket { outline:1px solid grey; color:black !important; }
+/* Adjusted slightly. */
+/* .cm-s-p5-widget .CodeMirror-activeline-background { background: #e8f2ff; }
+.cm-s-p5-widget .CodeMirror-matchingbracket { outline:1px solid grey; color:black !important; } */
 
 /* These styles don't seem to be set by CodeMirror's javascript mode. */
-
-.cm-s-p5-widget span.cm-qualifier { color: #555; }
+/* OK, won't port */
+/* .cm-s-p5-widget span.cm-qualifier { color: #555; }
 .cm-s-p5-widget span.cm-builtin { color: #30a; }
 .cm-s-p5-widget span.cm-bracket { color: #cc7; }
 .cm-s-p5-widget span.cm-tag { color: #170; }
 .cm-s-p5-widget span.cm-attribute { color: #00c; }
-.cm-s-p5-widget span.cm-link { color: #219; }
+.cm-s-p5-widget span.cm-link { color: #219; } */
