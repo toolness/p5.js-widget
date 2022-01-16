@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 
@@ -23,7 +24,9 @@ if (__dirname !== process.cwd()) {
     process.exit(1);
 }
 
-// TODO: rebuild.
+console.log("Building production bundle...");
+// Live output: https://stackoverflow.com/a/31104898/788168
+execSync("NODE_ENV=production npm run bundle", { stdio: 'inherit' });
 
 console.log(`Creating ${OUTPUT_DIR}`);
 
