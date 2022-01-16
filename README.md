@@ -53,6 +53,10 @@ of plugins:
 The test suite can be run on the development server at
 http://localhost:8080/test/, or on the command-line with `npm test`.
 
+## Publish to GitHub Pages
+
+Run `npm run publish` to build & publish a site.
+
 [website]: https://toolness.github.io/p5.js-widget/
 [TypeScript]: http://typescriptlang.org/
 [React]: http://facebook.github.io/react/

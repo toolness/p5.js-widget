@@ -26,9 +26,9 @@ if (__dirname !== process.cwd()) {
     process.exit(1);
 }
 
-// console.log("Building production bundle...");
+console.log("Building production bundle...");
 // Live output: https://stackoverflow.com/a/31104898/788168
-// execSync("NODE_ENV=production npm run bundle", { stdio: 'inherit' });
+execSync("NODE_ENV=production npm run bundle", { stdio: 'inherit' });
 
 console.log(`Creating ${OUTPUT_DIR}`);
 
