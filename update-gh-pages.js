@@ -3,6 +3,8 @@ const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 
+const ghpages = require("gh-pages");
+
 const OUTPUT_DIR = "website/";
 
 // https://stackoverflow.com/a/68317228/788168
@@ -24,9 +26,9 @@ if (__dirname !== process.cwd()) {
     process.exit(1);
 }
 
-console.log("Building production bundle...");
+// console.log("Building production bundle...");
 // Live output: https://stackoverflow.com/a/31104898/788168
-execSync("NODE_ENV=production npm run bundle", { stdio: 'inherit' });
+// execSync("NODE_ENV=production npm run bundle", { stdio: 'inherit' });
 
 console.log(`Creating ${OUTPUT_DIR}`);
 
@@ -53,4 +55,16 @@ filesToCopy.forEach((file) => {
     fs.copyFileSync(file, path.join(OUTPUT_DIR, fileName));
 });
 
-console.log("Done!");
+console.log("Publishing files...");
+ghpages.publish(
+    OUTPUT_DIR, 
+    {
+        remote: "citelao",
+    }, (err) => {
+        if (err) {
+            console.error("Error publishing: ", err);
+            process.exit(1);
+        }
+
+        console.log("Done!");
+    });
