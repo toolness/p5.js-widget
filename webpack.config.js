@@ -41,6 +41,16 @@ var baseConfig = {
     ]
   },
   plugins: [
+    // TODO: Monaco is *huge*: like 3Mb. That's probably *ok*, but maybe we can
+    // trim the bundle.
+    //
+    // Shipping default features & only TS, JS:
+    // - ts.worker.js: 4.48Mb
+    // - main.bundle.js: 3.31Mb
+    //
+    // Shipping only "coreCommands" & TS, JS:
+    // - ts.worker.js: 4.48Mb
+    // - main.bundle.js: 3.29Mb
     new (require('monaco-editor-webpack-plugin'))({
       languages: [
         "typescript",
