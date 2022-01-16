@@ -1,28 +1,24 @@
 import React = require("react");
 import ReactDOM = require("react-dom");
 
-import url = require("url");
-
 import * as defaults from "./defaults";
 import { SessionStorageAutosaver } from "./autosaver";
 import App from "./app";
 
-let defaultSketchJS = require("raw!./default-sketch.js") as string;
+let defaultSketchJS = require("raw-loader!./default-sketch.js") as string;
 
-require("../node_modules/codemirror/lib/codemirror.css");
 require("../css/style.css");
-require("../css/p5-widget-codemirror-theme.css");
 
 function start() {
   let embeddingPageURL = document.referrer;
-  let qs = url.parse(window.location.search, true).query;
-  let id = embeddingPageURL + '_' + qs['id'];
-  let baseSketchURL = qs['baseSketchURL'] || embeddingPageURL;
-  let autoplay = (qs['autoplay'] === 'on');
-  let initialContent = qs['sketch'] || defaultSketchJS;
-  let p5version = qs['p5version'] || defaults.P5_VERSION;
-  let previewWidth = parseInt(qs['previewWidth']);
-  let maxRunTime = parseInt(qs['maxRunTime'])
+  let qs = new URLSearchParams(window.location.search);
+  let id = embeddingPageURL + '_' + qs.get('id');
+  let baseSketchURL = qs.get('baseSketchURL') || embeddingPageURL;
+  let autoplay = (qs.get('autoplay') === 'on');
+  let initialContent = qs.get('sketch') || defaultSketchJS;
+  let p5version = qs.get('p5version') || defaults.P5_VERSION;
+  let previewWidth = parseInt(qs.get('previewWidth'));
+  let maxRunTime = parseInt(qs.get('maxRunTime'))
   if (isNaN(previewWidth)) {
     previewWidth = defaults.PREVIEW_WIDTH;
   }

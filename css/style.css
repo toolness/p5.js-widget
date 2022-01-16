@@ -126,11 +126,6 @@ a.p5-logo img {
   padding-right: 1em;
 }
 
-.CodeMirror-gutters {
-  border-right: none;
-  background: var(--very-light-gray);
-}
-
 .error-line {
   background: var(--light-pink);
 }

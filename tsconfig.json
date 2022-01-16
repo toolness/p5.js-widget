@@ -1,14 +1,13 @@
 {
   "compilerOptions": {
     "target": "es5",
+    "lib": ["es2015", "DOM"],
     "sourceMap": true,
-    "jsx": "react"
+    "jsx": "react",
+    "types": [],
   },
   "files": [
     "typings/custom.d.ts",
-    "typings/codemirror.d.ts",
-    "typings/react.d.ts",
-    "typings/react-dom.d.ts",
     "typings/react-addons-pure-render-mixin.d.ts",
     "typings/esprima/esprima.d.ts",
     "typings/chai/chai.d.ts",
@@ -28,7 +27,8 @@
     "lib/app.tsx",
     "lib/toolbar.tsx",
     "lib/editor.tsx",
-    "lib/preview.tsx"
+    "lib/preview.tsx",
+    "lib/undo-redo-helper.ts"
   ],
   "exclude": [
     "node_modules"

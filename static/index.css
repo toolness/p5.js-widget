@@ -1,3 +1,17 @@
+:root {
+  --light-gray: #A0A0A0;
+  --dark-gray: #666;
+  --almost-black: #222;
+  --dark-brown: #704F21;
+  --light-brown: #a67f59;
+  --pinkish: #DC3787; /* not p5 pink, but related */
+  --dark-blueish: #00A1D3;
+
+  --dark-pink: #ec245e;
+  --blueish: #30b8e6;
+  --ui-font: Montserrat, sans-serif;
+}
+
 html {
   min-width: 768px;
 }
@@ -8,6 +22,14 @@ body {
   margin: 0 auto;
 }
 
+  .full-screen {
+    max-width: 100%;
+
+    /* TODO: full height, but that causes overdraw. */
+    height: 95vh;
+    box-sizing: border-box;
+  }
+
 h1, h2, h3 {
   font-weight: normal;
 }
@@ -15,3 +37,30 @@ h1, h2, h3 {
 a {
   color: inherit;
 }
+
+.hatnote {
+  display: inline-block;
+  padding: 0.5rem;
+}
+
+.button {
+  display: inline-block;
+
+  margin: 10px auto;
+  padding: 1rem;
+  border: 1px solid var(--dark-pink);
+  border-radius: 2px;
+
+  background-color: white;
+  color: inherit;
+
+  font-family: Montserrat, sans-serif;
+  text-decoration: none;
+}
+
+  .button:hover,
+  .button:focus {
+    background-color: var(--blueish);
+    border-color: var(--blueish);
+    color: white;
+  }

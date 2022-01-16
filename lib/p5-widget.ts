@@ -55,8 +55,12 @@ function isElementInViewport(el: HTMLElement) {
 }
 
 function getDataHeight(el: HTMLScriptElement) {
-  let height = parseInt(el.getAttribute('data-height'));
+  const dataHeight = el.getAttribute('data-height') || "";
+  if (dataHeight.indexOf("%") !== -1) {
+    return dataHeight;
+  }
 
+  let height = parseInt(dataHeight);
   if (isNaN(height)) height = defaults.HEIGHT;
 
   return height;
@@ -110,7 +114,12 @@ function replaceScriptWithWidget(el: HTMLScriptElement) {
 
   function makeWidget(sketch: string) {
     qsArgs.push('sketch=' + encodeURIComponent(sketch));
-    style.push('min-height: ' + height + 'px');
+
+    if (typeof height === "number") {
+      style.push('min-height: ' + height + 'px');
+    } else {
+      style.push('height: ' + height);
+    }
     url = myBaseURL + IFRAME_FILENAME + '?' + qsArgs.join('&');
     iframe.setAttribute('src', url);
     iframe.setAttribute('style', style.join('; '));

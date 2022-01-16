@@ -3,10 +3,10 @@
 // Definitions by: Asana <https://asana.com>, AssureSign <http://www.assuresign.com>, Microsoft <https://microsoft.com>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-/// <reference path="react.d.ts" />
+/// <reference path="../node_modules/@types/react/index.d.ts" />
 
 declare namespace __React {
-    interface PureRenderMixin extends Mixin<any, any> {}
+    interface PureRenderMixin extends React.Mixin<any, any> {}
 
     namespace __Addons {
         export var PureRenderMixin: PureRenderMixin;
