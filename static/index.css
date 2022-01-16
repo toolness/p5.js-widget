@@ -1,3 +1,14 @@
+:root {
+  --light-gray: #A0A0A0;
+  --dark-gray: #666;
+  --almost-black: #222;
+  --dark-brown: #704F21;
+  --light-brown: #a67f59;
+  --pinkish: #DC3787; /* not p5 pink, but related */
+  --dark-blueish: #00A1D3;
+  --pink: #ec245e;
+}
+
 html {
   min-width: 768px;
 }
@@ -15,3 +26,21 @@ h1, h2, h3 {
 a {
   color: inherit;
 }
+
+.button {
+  display: inline-block;
+
+  margin: 10px auto;
+  padding: 1rem;
+  border: 1px solid var(--pink);
+  background-color: white;
+  color: inherit;
+
+  text-decoration: none;
+}
+
+  .button:hover,
+  .button:focus {
+    background-color: var(--pink);
+    color: white;
+  }
