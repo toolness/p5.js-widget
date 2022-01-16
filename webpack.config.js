@@ -11,6 +11,9 @@ var baseConfig = {
     extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
   },
   devtool: 'source-map',
+  optimization: {
+    minimize: production,
+  },
   module: {
     rules: [
       // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
@@ -39,15 +42,7 @@ var baseConfig = {
   },
   plugins: [
     new (require('monaco-editor-webpack-plugin'))()
-  ].concat(
-    production ? [
-      new webpack.optimize.UglifyJsPlugin({
-        compress: {
-          warnings: false
-        }
-      })
-    ] : []
-  ),
+  ],
 };
 
 var configurations = function() {
