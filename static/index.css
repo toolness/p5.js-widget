@@ -24,6 +24,8 @@ body {
 
   .full-screen {
     max-width: 100%;
+
+    /* TODO: full height, but that causes overdraw. */
     height: 95vh;
     box-sizing: border-box;
   }
